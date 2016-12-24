@@ -1,4 +1,4 @@
-//Time-stamp: <2016-12-25 00:15:00 hamada>
+//Time-stamp: <2017-01-16 04:50:34 hamada>
 // A Tour of Go
 package main
 
@@ -20,24 +20,13 @@ func needFloat(x float64) float64 {
 	return x * 0.1
 }
 
-func test_for() {
-	sum := 0
-	for i := 0; i < 10; i++ {
-		sum += i
-	}
-	fmt.Println(sum)
-}
-
 func main() {
-	test_for()
-	if 0==1 {
-		fmt.Println(Small)
-		fmt.Println(float64(Big))
-		fmt.Println(needInt(Small))
-		fmt.Println(needFloat(Small))
-		fmt.Println(needFloat(Big))
-		fmt.Printf("%T\n", Small)
-		fmt.Printf("%T\n", Big>>38)
-		fmt.Printf("0x%x\n", Big>>37 -1)
-	}
+	fmt.Println(Small)
+	fmt.Println(float64(Big))
+	fmt.Println(needInt(Small))
+	fmt.Println(needFloat(Small))
+	fmt.Println(needFloat(Big))
+	fmt.Printf("%T\n", Small)
+	fmt.Printf("%T\n", Big>>38)
+	fmt.Printf("0x%x\n", Big>>37 -1)
 }
