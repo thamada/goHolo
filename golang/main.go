@@ -1,4 +1,4 @@
-//Time-stamp: <2016-12-25 00:15:00 hamada>
+//Time-stamp: <2016-12-25 00:17:23 hamada>
 // A Tour of Go
 package main
 
@@ -22,7 +22,7 @@ func needFloat(x float64) float64 {
 
 func test_for() {
 	sum := 0
-	for i := 0; i < 10; i++ {
+	for (i := 0; i < 10; i++) {
 		sum += i
 	}
 	fmt.Println(sum)
