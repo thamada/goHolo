@@ -1,8 +1,11 @@
-//Time-stamp: <2016-12-25 00:20:50 hamada>
+//Time-stamp: <2016-12-25 00:25:24 hamada>
 // A Tour of Go
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 // GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!
 // GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!
@@ -20,17 +23,25 @@ func needFloat(x float64) float64 {
 	return x * 0.1
 }
 
-func test_for() {
-	sum := 1
-	for sum < 1000 { // while
-		fmt.Println("sum =",sum)
-		sum += sum
+func forever_loop() {
+	// while(true)
+	for {
 	}
-	fmt.Println(sum)
+	fmt.Println("Forever")
+}
+
+func sqrt(x float64) string {
+	if x < 0 {
+		return sqrt(-x) + "i"
+	}
+	return fmt.Sprint(math.Sqrt(x))
 }
 
 func main() {
-	test_for()
+	fmt.Println(sqrt(2), sqrt(-4))
+	fmt.Printf("%T\n", sqrt(2))
+	fmt.Printf("%T\n", sqrt(-4))
+
 	if 0==1 {
 		fmt.Println(Small)
 		fmt.Println(float64(Big))
