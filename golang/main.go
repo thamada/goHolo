@@ -1,10 +1,11 @@
-//Time-stamp: <2017-01-17 23:59:18 hamada>
+//Time-stamp: <2017-01-18 04:21:55 hamada>
 // A Tour of Go
 package main
 
 import (
 	"fmt"
 	"math"
+	"runtime"
 )
 
 // GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!
@@ -13,7 +14,7 @@ import (
 const (
 	// Create a huge number by shifting a 1 bit left 100 places.
 	// In other words, the binary number that is 1 followed by 100 zeroes.
-	Big = 1 << 100 
+	Big = 1 << 100
 	// Shift it right again 99 places, so we end up with 1<<1, or 2.
 	Small = Big >> 99
 )
@@ -55,41 +56,61 @@ func pow(x, n, lim float64) float64 {
 	return lim
 }
 
-
 func Sqrt(x float64) float64 {
 	z := x
 	zz := float64(0)
 
-  for i :=0; i<10; i++ {
-		zz = z - (z*z - x)/(2*z)
-//		fmt.Printf("%d: %g\n", i, zz)
-		if  zz == z {
-				break
-		}else{
+	for i := 0; i < 10; i++ {
+		zz = z - (z*z-x)/(2*z)
+		//		fmt.Printf("%d: %g\n", i, zz)
+		if zz == z {
+			break
+		} else {
 			z = zz
 		}
-  }
+	}
 
 	return z
+}
+
+func switch_test () {
+
+
+	fmt.Println(runtime.GOOS)
+
+	fmt.Print("Go runs on ")
+
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Println("OS X.")
+	case "linux":
+		fmt.Println("Linux.")
+	default:
+		fmt.Printf("%s.", os)
+	}
 }
 
 
 func main() {
 
-  e_max := 0.0
-	for i := 0; i<0x1000; i++ {
-		x := float64(i)
-		z0 := Sqrt(x)
-		z1 := math.Sqrt(x)
-		e_rel := (z1 - z0)/z1
-    e_rel = math.Abs(e_rel)
-		if e_rel > e_max {
-			 e_max = e_rel
-			 fmt.Println(i, z0, z1, e_max)
+	switch_test()
+	
+	if 0 == 1 {
+		e_max := 0.0
+		for i := 0; i < 0x1000; i++ {
+			x := float64(i)
+			z0 := Sqrt(x)
+			z1 := math.Sqrt(x)
+			e_rel := (z1 - z0) / z1
+			e_rel = math.Abs(e_rel)
+			if e_rel > e_max {
+				e_max = e_rel
+				fmt.Println(i, z0, z1, e_max)
+			}
 		}
 	}
 
-	if 0==1 {
+	if 0 == 1 {
 		fmt.Println(
 			pow(3, 3, 10),
 			pow(3, 4, 20),
@@ -105,6 +126,6 @@ func main() {
 		fmt.Println(needFloat(Big))
 		fmt.Printf("%T\n", Small)
 		fmt.Printf("%T\n", Big>>38)
-		fmt.Printf("0x%x\n", Big>>37 -1)
+		fmt.Printf("0x%x\n", Big>>37-1)
 	}
 }
