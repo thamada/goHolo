@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 04:25:08 hamada>
+//Time-stamp: <2017-01-18 04:35:06 hamada>
 // A Tour of Go
 package main
 
@@ -77,8 +77,15 @@ func switch_test () {
 
 
 	fmt.Println("GOOS: ",runtime.GOOS)
+	fmt.Println("GOARCH: ",runtime.GOARCH)
 	fmt.Println("GOROOT: ",runtime.GOROOT)
-	runtime.Goexit()
+	fmt.Println("NumCPU: ",runtime.NumCPU())
+	fmt.Println("NumCgoCall: ",runtime.NumCgoCall())
+	fmt.Println("NumGoroutine: ",runtime.NumGoroutine())
+	fmt.Println("ReadTrace: ",runtime.ReadTrace())
+	fmt.Println("Version: ",runtime.Version())
+	runtime.Breakpoint()
+
 
 	fmt.Print("Go runs on ")
 
