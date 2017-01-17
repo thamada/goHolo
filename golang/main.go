@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 04:21:55 hamada>
+//Time-stamp: <2017-01-18 04:25:08 hamada>
 // A Tour of Go
 package main
 
@@ -76,7 +76,9 @@ func Sqrt(x float64) float64 {
 func switch_test () {
 
 
-	fmt.Println(runtime.GOOS)
+	fmt.Println("GOOS: ",runtime.GOOS)
+	fmt.Println("GOROOT: ",runtime.GOROOT)
+	runtime.Goexit()
 
 	fmt.Print("Go runs on ")
 
