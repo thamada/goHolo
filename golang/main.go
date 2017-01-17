@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 04:35:06 hamada>
+//Time-stamp: <2017-01-18 04:54:15 hamada>
 // A Tour of Go
 package main
 
@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"math"
 	"runtime"
+	"time"
 )
 
 // GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!
@@ -73,19 +74,20 @@ func Sqrt(x float64) float64 {
 	return z
 }
 
-func switch_test () {
+func switch_test() {
 
-
-	fmt.Println("GOOS: ",runtime.GOOS)
-	fmt.Println("GOARCH: ",runtime.GOARCH)
-	fmt.Println("GOROOT: ",runtime.GOROOT)
-	fmt.Println("NumCPU: ",runtime.NumCPU())
-	fmt.Println("NumCgoCall: ",runtime.NumCgoCall())
-	fmt.Println("NumGoroutine: ",runtime.NumGoroutine())
-	fmt.Println("ReadTrace: ",runtime.ReadTrace())
-	fmt.Println("Version: ",runtime.Version())
-	runtime.Breakpoint()
-
+	fmt.Println("GOOS: ", runtime.GOOS)
+	fmt.Println("GOARCH: ", runtime.GOARCH)
+	fmt.Println("GOROOT: ", runtime.GOROOT)
+	fmt.Println("NumCPU: ", runtime.NumCPU())
+	fmt.Println("NumCgoCall: ", runtime.NumCgoCall())
+	fmt.Println("NumGoroutine: ", runtime.NumGoroutine())
+	fmt.Println("ReadTrace: ", runtime.ReadTrace())
+	fmt.Println("Version: ", runtime.Version())
+	fmt.Println("CPUProfile: ", runtime.CPUProfile())
+	if 0 == 1 {
+		runtime.Breakpoint()
+	}
 
 	fmt.Print("Go runs on ")
 
@@ -97,13 +99,36 @@ func switch_test () {
 	default:
 		fmt.Printf("%s.", os)
 	}
+
 }
 
+func time_test() {
+	t := time.Now()
+
+	fmt.Println(t)
+	fmt.Println(t.Year())
+	fmt.Println(t.Month())
+	fmt.Println(t.Day())
+	fmt.Println(t.Hour())
+	fmt.Println(t.Minute())
+	fmt.Println(t.Second())
+	fmt.Println(t.Weekday())
+
+	t = time.Date(2016, 12, 31, 23, 59, 60, 0, time.UTC)
+	fmt.Println(t)
+	t = time.Date(2016, 12, 31, 23, 59, 60, 0, time.Local)
+	fmt.Println(t)
+
+}
 
 func main() {
 
-	switch_test()
-	
+	time_test()
+
+	if 0 == 1 {
+		switch_test()
+	}
+
 	if 0 == 1 {
 		e_max := 0.0
 		for i := 0; i < 0x1000; i++ {
