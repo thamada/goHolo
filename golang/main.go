@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 05:14:17 hamada>
+//Time-stamp: <2017-01-18 07:52:10 hamada>
 // A Tour of Go
 package main
 
@@ -127,9 +127,30 @@ func time_test() {
 	t = time.Now()
 	s := t.String()
 	fmt.Println(s)
-	fmt.Printf("%T\n",s)
-	fmt.Printf("%T\n",t)
-	fmt.Printf("%T\n",t.String())
+	fmt.Printf("%T\n", s)
+	fmt.Printf("%T\n", t)
+	fmt.Printf("%T\n", t.String())
+
+	today := time.Now().Weekday()
+	fmt.Printf("%T\t", today)
+	fmt.Println(today)
+	fmt.Printf("%T\t", time.Saturday)
+	fmt.Println(time.Saturday)
+	/*
+		  for i := 0; i < 10; i++ {
+				fmt.Println(today + i)
+			}
+	*/
+	fmt.Println(today + 0)
+	fmt.Println(today + 1)
+	fmt.Println(today + 2)
+	fmt.Println(today + 3)
+	fmt.Println(today + 4) // runtime error
+	fmt.Println(today - 0)
+	fmt.Println(today - 1)
+	fmt.Println(today - 2)
+	fmt.Println(today - 3)
+	fmt.Println(today - 4) // runtime error
 
 }
 
