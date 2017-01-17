@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-17 23:28:02 hamada>
+//Time-stamp: <2017-01-17 23:34:02 hamada>
 // A Tour of Go
 package main
 
@@ -37,13 +37,26 @@ func sqrt(x float64) string {
 	return fmt.Sprint(math.Sqrt(x))
 }
 
+func pow(x, n, lim float64) float64 {
+	if v := math.Pow(x, n); v < lim {
+		return v
+	}
+	return lim
+}
+
 func main() {
-	fmt.Println(sqrt(2))
-	fmt.Println(sqrt(-4))
-	fmt.Printf("%T\n", sqrt(2))
-	fmt.Printf("%T\n", sqrt(-4))
+
+	fmt.Println(
+		pow(3, 2, 10),
+		pow(3, 3, 20),
+	)
+
 
 	if 0==1 {
+		fmt.Println(sqrt(2))
+		fmt.Println(sqrt(-4))
+		fmt.Printf("%T\n", sqrt(2))
+		fmt.Printf("%T\n", sqrt(-4))
 		fmt.Println(Small)
 		fmt.Println(float64(Big))
 		fmt.Println(needInt(Small))
