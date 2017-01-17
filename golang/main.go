@@ -1,4 +1,4 @@
-//Time-stamp: <2016-12-25 00:25:24 hamada>
+//Time-stamp: <2017-01-17 23:28:02 hamada>
 // A Tour of Go
 package main
 
@@ -32,13 +32,14 @@ func forever_loop() {
 
 func sqrt(x float64) string {
 	if x < 0 {
-		return sqrt(-x) + "i"
+		x = -x
 	}
 	return fmt.Sprint(math.Sqrt(x))
 }
 
 func main() {
-	fmt.Println(sqrt(2), sqrt(-4))
+	fmt.Println(sqrt(2))
+	fmt.Println(sqrt(-4))
 	fmt.Printf("%T\n", sqrt(2))
 	fmt.Printf("%T\n", sqrt(-4))
 
