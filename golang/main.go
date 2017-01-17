@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-17 23:58:42 hamada>
+//Time-stamp: <2017-01-18 00:06:03 hamada>
 // A Tour of Go
 package main
 
@@ -62,7 +62,7 @@ func Sqrt(x float64) float64 {
 
   for i :=0; i<10; i++ {
 		zz = z - (z*z - x)/(2*z)
-		fmt.Printf("%d: %g\n", i, zz)
+//		fmt.Printf("%d: %g\n", i, zz)
 		if  zz == z {
 				break
 		}else{
@@ -76,11 +76,18 @@ func Sqrt(x float64) float64 {
 
 func main() {
 
-	z0 := Sqrt(2)
-	z1 := math.Sqrt(2)
-	e_rel := (z1 - z0)/z1
-
-	fmt.Println(e_rel)
+  e_max := 0.0
+	for i := 0; i<0xffffffff; i++ {
+		x := float64(i)
+		z0 := Sqrt(x)
+		z1 := math.Sqrt(x)
+		e_rel := (z1 - z0)/z1
+    e_rel = math.Abs(e_rel)
+		if e_rel > e_max {
+			 e_max = e_rel
+			 fmt.Println(i, z0, z1, e_max)
+		}
+	}
 
 	if 0==1 {
 		fmt.Println(
