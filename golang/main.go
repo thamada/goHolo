@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 07:52:10 hamada>
+//Time-stamp: <2017-01-18 08:41:06 hamada>
 // A Tour of Go
 package main
 
@@ -141,9 +141,18 @@ func time_test() {
 				fmt.Println(today + i)
 			}
 	*/
+
 	fmt.Println(today + 0)
 	fmt.Println(today + 1)
-	fmt.Println(today + 2)
+	defer fmt.Println("today+2:", today + 2)
+
+
+	x := 1
+	defer fmt.Println("x:", x)
+	fmt.Println("x:", x)
+	x = 1111
+
+
 	fmt.Println(today + 3)
 	fmt.Println(today + 4) // runtime error
 	fmt.Println(today - 0)
@@ -151,6 +160,16 @@ func time_test() {
 	fmt.Println(today - 2)
 	fmt.Println(today - 3)
 	fmt.Println(today - 4) // runtime error
+
+	t = time.Now()
+	switch { // switch true
+	case t.Hour() < 12:
+		fmt.Println("Good morning!")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoon.")
+	default:
+		fmt.Println("Good evening.")
+	}
 
 }
 
