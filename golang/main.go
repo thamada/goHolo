@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 00:06:03 hamada>
+//Time-stamp: <2017-01-17 23:59:18 hamada>
 // A Tour of Go
 package main
 
@@ -77,7 +77,7 @@ func Sqrt(x float64) float64 {
 func main() {
 
   e_max := 0.0
-	for i := 0; i<0xffffffff; i++ {
+	for i := 0; i<0x1000; i++ {
 		x := float64(i)
 		z0 := Sqrt(x)
 		z1 := math.Sqrt(x)
