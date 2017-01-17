@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 04:54:15 hamada>
+//Time-stamp: <2017-01-18 05:14:17 hamada>
 // A Tour of Go
 package main
 
@@ -118,6 +118,18 @@ func time_test() {
 	fmt.Println(t)
 	t = time.Date(2016, 12, 31, 23, 59, 60, 0, time.Local)
 	fmt.Println(t)
+
+	const layout = "Now, Mon Jan. 02 15:04:05 JST 2006"
+	fmt.Println(t.Format(layout))
+	const layout2 = "Jan 02 15:04:05 UTC 2006"
+	fmt.Println(t.Format(layout2))
+
+	t = time.Now()
+	s := t.String()
+	fmt.Println(s)
+	fmt.Printf("%T\n",s)
+	fmt.Printf("%T\n",t)
+	fmt.Printf("%T\n",t.String())
 
 }
 
