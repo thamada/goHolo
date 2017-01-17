@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-17 23:42:59 hamada>
+//Time-stamp: <2017-01-17 23:43:09 hamada>
 // A Tour of Go
 package main
 
@@ -69,7 +69,7 @@ func main() {
 
 		fmt.Println(
 			pow(3, 3, 10),
-			pow(3, 4, 20)
+			pow(3, 4, 20),
 		)
 
 	if 0==1 {
