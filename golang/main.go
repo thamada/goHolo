@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-17 23:57:19 hamada>
+//Time-stamp: <2017-01-17 23:58:42 hamada>
 // A Tour of Go
 package main
 
@@ -57,7 +57,7 @@ func pow(x, n, lim float64) float64 {
 
 
 func Sqrt(x float64) float64 {
-	z := float64(100)
+	z := x
 	zz := float64(0)
 
   for i :=0; i<10; i++ {
@@ -78,7 +78,9 @@ func main() {
 
 	z0 := Sqrt(2)
 	z1 := math.Sqrt(2)
-	fmt.Println((z1 - z0)/z1)
+	e_rel := (z1 - z0)/z1
+
+	fmt.Println(e_rel)
 
 	if 0==1 {
 		fmt.Println(
