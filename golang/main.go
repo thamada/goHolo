@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 08:41:06 hamada>
+//Time-stamp: <2017-01-18 09:27:27 hamada>
 // A Tour of Go
 package main
 
@@ -144,14 +144,16 @@ func time_test() {
 
 	fmt.Println(today + 0)
 	fmt.Println(today + 1)
-	defer fmt.Println("today+2:", today + 2)
-
+	defer fmt.Println("defer: today+2:", today+2)
 
 	x := 1
-	defer fmt.Println("x:", x)
+	defer fmt.Println("defer: x:", x)
 	fmt.Println("x:", x)
 	x = 1111
 
+	x = add(x)
+	defer fmt.Println("x:", x)
+	x = add(x)
 
 	fmt.Println(today + 3)
 	fmt.Println(today + 4) // runtime error
@@ -173,11 +175,34 @@ func time_test() {
 
 }
 
+func add(x int) int {
+	return x + 1
+}
+
+func pointer_test() {
+	i, j := 42, 2701
+
+	var p *int
+	fmt.Printf("%T\n", p)
+	fmt.Println(p)
+	p = &i
+	fmt.Println(*p)
+	*p = 21
+	fmt.Println(i)
+	fmt.Printf("%T\n", p)
+
+	p = &j
+	*p = *p / 37
+	fmt.Println(j)
+	fmt.Printf("%T\n", p)
+}
+
 func main() {
 
-	time_test()
+	pointer_test()
 
-	if 0 == 1 {
+	if false {
+		time_test()
 		switch_test()
 	}
 
