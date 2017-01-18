@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 23:23:43 hamada>
+//Time-stamp: <2017-01-18 23:25:15 hamada>
 // A Tour of Go
 package main
 
@@ -208,10 +208,8 @@ func main() {
 	v := Vertex{1, 2}
 	v.X = 4
 	fmt.Println(v)
-	fmt.Println(v.X)
-	fmt.Println(v.Y)
-
-	fmt.Println(Vertex{1, 2})
+	v.Y = 1.2e9
+	fmt.Println(v)
 
 	if false {
 		pointer_test()
