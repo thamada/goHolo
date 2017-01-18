@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 23:22:48 hamada>
+//Time-stamp: <2017-01-18 23:23:43 hamada>
 // A Tour of Go
 package main
 
@@ -204,6 +204,12 @@ type Vertex struct {
 
 
 func main() {
+
+	v := Vertex{1, 2}
+	v.X = 4
+	fmt.Println(v)
+	fmt.Println(v.X)
+	fmt.Println(v.Y)
 
 	fmt.Println(Vertex{1, 2})
 
