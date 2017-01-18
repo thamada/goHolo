@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 09:27:27 hamada>
+//Time-stamp: <2017-01-18 23:22:48 hamada>
 // A Tour of Go
 package main
 
@@ -197,11 +197,18 @@ func pointer_test() {
 	fmt.Printf("%T\n", p)
 }
 
+type Vertex struct {
+	X int
+	Y int
+}
+
+
 func main() {
 
-	pointer_test()
+	fmt.Println(Vertex{1, 2})
 
 	if false {
+		pointer_test()
 		time_test()
 		switch_test()
 	}
