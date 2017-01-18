@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 02:43:00 hamada>
+//Time-stamp: <2017-01-19 02:46:09 hamada>
 // A Tour of Go
 package main
 
@@ -219,19 +219,30 @@ func struct_test() {
 	p = &Vertex{20, 30}
 	fmt.Println(*p)
 
-	p = &Vertex{ }
+	p = &Vertex{}
 	fmt.Println(*p)
 
 	fmt.Printf("%T\n", v)
 	fmt.Printf("%T\n", p)
+}
 
+func array_test() {
+	var a [2]string
+	a[0] = "Hello"
+	a[1] = "World"
+	fmt.Println(a[0], a[1])
+	fmt.Println(a)
+
+	primes := [6]int{2, 3, 5, 7, 11, 13}
+	fmt.Println(primes)
 }
 
 func main() {
 
-	struct_test()
+	array_test()
 
 	if false {
+		struct_test()
 		pointer_test()
 		time_test()
 		switch_test()
