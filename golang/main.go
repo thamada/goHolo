@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-18 23:30:23 hamada>
+//Time-stamp: <2017-01-18 23:31:12 hamada>
 // A Tour of Go
 package main
 
@@ -208,6 +208,14 @@ func struct_test() {
 	fmt.Println(v)
 	v.Y = 1.2e9
 	fmt.Println(v)
+
+	p := &v
+	p.X = 1e3
+	fmt.Println(v)
+
+	(*p).X = 1e3
+	fmt.Println(v)
+
 }
 
 func main() {
