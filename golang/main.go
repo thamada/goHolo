@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 13:00:30 hamada>
+//Time-stamp: <2017-01-19 13:21:12 hamada>
 // A Tour of Go
 package main
 
@@ -363,6 +363,7 @@ func slice_of_slice_test() {
 		[]string{"_", "_", "_"},
 		[]string{"_", "_", "_"},
 	}
+	fmt.Printf("%T\n", board)
 
 	// The players take turns.
 	board[0][0] = "X"
@@ -377,11 +378,38 @@ func slice_of_slice_test() {
 
 }
 
+func appending_to_a_slice_test() {
+	var s []int
+	printSlice(s)
+
+	// append works on nil slices.
+	s = append(s, 0)
+	printSlice(s)
+
+	// The slice grows as needed.
+	s = append(s, 1)
+	printSlice(s)
+
+	// We can add more than one element at a time.
+	s = append(s, 2, 3, 4)
+	printSlice(s)
+
+	// cannot use v (type []int) as type int in append
+	/*
+		v := []int{5, 6, 7, 8, 9}
+		s = append(s, v)
+		printSlice(s)
+	*/
+	
+
+}
+
 func main() {
 
-	slice_of_slice_test()
+	appending_to_a_slice_test()
 
 	if false {
+		slice_of_slice_test()
 		slice_defaults_test()
 		slice_literals_test()
 		array_test()
