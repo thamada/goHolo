@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-20 02:42:24 hamada>
+//Time-stamp: <2017-01-20 02:49:04 hamada>
 
 package main
 
@@ -509,14 +509,37 @@ func func_value_test() {
 	fmt.Println(hypot(5, 12))
 	fmt.Println(compute(hypot))
 	fmt.Println(compute(math.Pow))
+	fmt.Printf("hypot:    %T\n", hypot)
+	fmt.Printf("math.Pow: %T\n", math.Pow)
+	fmt.Printf("compute:  %T\n", compute)
+}
+
+func adder() func(int) int {
+	sum := 0
+	return func(x int) int {
+		sum += x
+		return sum
+	}
+}
+
+func closures_test() {
+	pos, neg := adder(), adder()
+
+	for i := 0; i < 10; i++ {
+		fmt.Println(
+			pos(i),
+			neg(-2*i),
+		)
+	}
 
 }
 
 func main() {
 
-	func_value_test()
+	closures_test()
 
 	if false {
+		func_value_test()
 		maintain_map_test()
 		map_literals_test()
 		map_test()
