@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 10:04:10 hamada>
+//Time-stamp: <2017-01-19 10:12:51 hamada>
 // A Tour of Go
 package main
 
@@ -237,7 +237,7 @@ func array_test() {
 	fmt.Println(primes)
 
 	for i := 0; i < 6; i++ {
-		var s []int = primes[0:i+1]
+		var s []int = primes[0 : i+1]
 		fmt.Println(i+1, s)
 	}
 
@@ -247,24 +247,55 @@ func array_test() {
 	}
 
 	for i := 0; i < 6; i++ {
-		var s []int = primes[i:i+1]
+		var s []int = primes[i : i+1]
 		fmt.Println(i, s)
 	}
 
-	s := primes[1:3]
-	fmt.Printf("%T\n", s)
+	{
+		s := primes[1:3]
+		fmt.Printf("%T\n", s)
 
-	s[0] = 111
+		s[0] = 111
+		fmt.Println(s)
+		fmt.Println(primes)
+	}
+
+}
+
+func slice_literal_test() {
+	q := [6]int{2, 3, 5, 7, 11, 13}
+	fmt.Printf("q: slice: %T\n", q)
+	fmt.Println(q)
+
+	ql := []int{2, 3, 5, 7, 11, 13}
+	fmt.Printf("ql: slice literal: %T\n", ql)
+	fmt.Println(ql)
+
+	r := []bool{true, false, true, true, false, true}
+	fmt.Printf("r: slice literal: %T\n", r)
+	fmt.Println(r)
+
+	s := []struct {
+		i int
+		b bool
+	}{
+		{2, true},
+		{3, false},
+		{5, true},
+		{7, true},
+		{11, false},
+		{13, true},
+	}
+	fmt.Printf("s: slice literal: %T\n", s)
 	fmt.Println(s)
-	fmt.Println(primes)
-	
 }
 
 func main() {
 
-	array_test()
+	slice_literal_test()
 
 	if false {
+		array_test()
 		struct_test()
 		pointer_test()
 		time_test()
