@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 13:31:07 hamada>
+//Time-stamp: <2017-01-19 13:42:13 hamada>
 // A Tour of Go
 package main
 
@@ -427,11 +427,48 @@ func range_test() {
 
 }
 
+func map_test() {
+
+	type Vertex struct {
+		Lat, Long float64
+	}
+
+	m := make(map[string]Vertex)
+
+	fmt.Printf("%T\n", m)
+
+	m["Bell Labs"] = Vertex{
+		40.68433, -74.39967,
+	}
+
+	fmt.Println(m["Bell Labs"])
+
+}
+
+func map_literals_test() {
+	type Vertex struct {
+		Lat, Long float64
+	}
+
+	var m = map[string]Vertex{
+		"Bell Labs": Vertex{
+			40.68433, -74.39967,
+		},
+		"Google": Vertex{
+			37.42202, -122.08408,
+		},
+	}
+
+	fmt.Println(m)
+}
+
 func main() {
 
-	range_test()
+	map_literals_test()
 
 	if false {
+		map_test()
+		range_test()
 		appending_to_a_slice_test()
 		slice_of_slice_test()
 		slice_defaults_test()
