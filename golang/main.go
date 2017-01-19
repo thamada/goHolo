@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 10:12:51 hamada>
+//Time-stamp: <2017-01-19 10:27:14 hamada>
 // A Tour of Go
 package main
 
@@ -262,20 +262,20 @@ func array_test() {
 
 }
 
-func slice_literal_test() {
+func slice_literals_test() {
 	q := [6]int{2, 3, 5, 7, 11, 13}
-	fmt.Printf("q: slice: %T\n", q)
+	fmt.Printf("q: array: %T\n", q)
 	fmt.Println(q)
 
-	ql := []int{2, 3, 5, 7, 11, 13}
-	fmt.Printf("ql: slice literal: %T\n", ql)
+	ql := []int{2, 3, 5, 7, 11, 13} // slice literal
+	fmt.Printf("ql: slice: %T\n", ql)
 	fmt.Println(ql)
 
-	r := []bool{true, false, true, true, false, true}
-	fmt.Printf("r: slice literal: %T\n", r)
+	r := []bool{true, false, true, true, false, true} // slice literal
+	fmt.Printf("r: slice: %T\n", r)
 	fmt.Println(r)
 
-	s := []struct {
+	s := []struct { // slice literal
 		i int
 		b bool
 	}{
@@ -286,15 +286,40 @@ func slice_literal_test() {
 		{11, false},
 		{13, true},
 	}
-	fmt.Printf("s: slice literal: %T\n", s)
+	fmt.Printf("s: slice: %T\n", s)
 	fmt.Println(s)
+}
+
+func slice_defaults_test() {
+
+	s := []int{700, 701, 702, 703, 704, 705}
+
+	printSlice(s[0:6])
+
+	s = s[:0]
+	printSlice(s)
+
+	s = s[1:5]
+	printSlice(s)
+
+	s = s[:6]
+	printSlice(s)
+
+	s = s[1:]
+	printSlice(s)
+
+}
+
+func printSlice(s []int) {
+	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
 }
 
 func main() {
 
-	slice_literal_test()
+	slice_defaults_test()
 
 	if false {
+		slice_literals_test()
 		array_test()
 		struct_test()
 		pointer_test()
