@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 10:27:14 hamada>
+//Time-stamp: <2017-01-19 10:28:13 hamada>
 // A Tour of Go
 package main
 
@@ -299,10 +299,10 @@ func slice_defaults_test() {
 	s = s[:0]
 	printSlice(s)
 
-	s = s[1:5]
+	s = s[:6]
 	printSlice(s)
 
-	s = s[:6]
+	s = s[2:]
 	printSlice(s)
 
 	s = s[1:]
