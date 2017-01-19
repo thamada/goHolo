@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 12:56:45 hamada>
+//Time-stamp: <2017-01-19 13:00:30 hamada>
 // A Tour of Go
 package main
 
@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"math"
 	"runtime"
+	"strings"
 	"time"
 )
 
@@ -355,12 +356,33 @@ func printSlice2(txt string, s []int) {
 	fmt.Printf("%s len=%d cap=%d %v\n", txt, len(s), cap(s), s)
 }
 
+func slice_of_slice_test() {
+	// Create a tic-tac-toe board.
+	board := [][]string{
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+	}
+
+	// The players take turns.
+	board[0][0] = "X"
+	board[2][2] = "O"
+	board[1][2] = "X"
+	board[1][0] = "O"
+	board[0][2] = "X"
+
+	for i := 0; i < len(board); i++ {
+		fmt.Printf("%s\n", strings.Join(board[i], " "))
+	}
+
+}
 
 func main() {
 
-	slice_defaults_test()
+	slice_of_slice_test()
 
 	if false {
+		slice_defaults_test()
 		slice_literals_test()
 		array_test()
 		struct_test()
