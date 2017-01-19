@@ -1,5 +1,5 @@
-//Time-stamp: <2017-01-20 01:50:30 hamada>
-// A Tour of Go
+//Time-stamp: <2017-01-20 02:21:21 hamada>
+
 package main
 
 import (
@@ -14,10 +14,7 @@ import (
 // GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!
 // GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!
 const (
-	// Create a huge number by shifting a 1 bit left 100 places.
-	// In other words, the binary number that is 1 followed by 100 zeroes.
-	Big = 1 << 100
-	// Shift it right again 99 places, so we end up with 1<<1, or 2.
+	Big   = 1 << 100
 	Small = Big >> 99
 )
 
@@ -461,30 +458,50 @@ func map_literals_test() {
 	fmt.Println(m)
 
 	var m2 = map[string]Vertex{
-		"Bell Labs": {40.68433, -74.39967,},
-		"Google": {37.42202, -122.08408,},
+		"Bell Labs": {40.68433, -74.39967},
+		"Google":    {37.42202, -122.08408},
 	}
 	fmt.Println(m2)
 
 	var m3 = map[string]Vertex{
 		"Bell Labs": {40.68433, -74.39967},
-		"Google": {37.42202, -122.08408},
+		"Google":    {37.42202, -122.08408},
 	}
 	fmt.Println(m3)
 
 	var m4 = map[string]Vertex{
 		"Bell Labs": Vertex{40.68433, -74.39967},
-		"Google": Vertex{37.42202, -122.08408},
+		"Google":    Vertex{37.42202, -122.08408},
 	}
 	fmt.Println(m4)
 
 }
 
+func maintain_map_test() {
+	m := make(map[string]int)
+
+	m["Answer"] = 42
+	fmt.Println("The value:", m["Answer"])
+
+	m["Answer"] = 48
+	fmt.Println("The value:", m["Answer"])
+
+	v, ok := m["Answer"]
+	fmt.Println("The value:", v, "Present?", ok)
+
+	delete(m, "Answer")
+	fmt.Println("The value:", m["Answer"])
+
+	v, ok = m["Answer"]
+	fmt.Println("The value:", v, "Present?", ok)
+}
+
 func main() {
 
-	map_literals_test()
+	maintain_map_test()
 
 	if false {
+		map_literals_test()
 		map_test()
 		range_test()
 		appending_to_a_slice_test()
