@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-20 02:21:21 hamada>
+//Time-stamp: <2017-01-20 02:42:24 hamada>
 
 package main
 
@@ -496,11 +496,28 @@ func maintain_map_test() {
 	fmt.Println("The value:", v, "Present?", ok)
 }
 
+func func_value_test() {
+	compute := func(fn func(float64, float64) float64) float64 {
+		return fn(3, 4)
+	}
+
+	hypot := func(x, y float64) float64 {
+		return math.Sqrt(x*x + y*y)
+	}
+
+	fmt.Println(hypot(3, 4))
+	fmt.Println(hypot(5, 12))
+	fmt.Println(compute(hypot))
+	fmt.Println(compute(math.Pow))
+
+}
+
 func main() {
 
-	maintain_map_test()
+	func_value_test()
 
 	if false {
+		maintain_map_test()
 		map_literals_test()
 		map_test()
 		range_test()
