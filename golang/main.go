@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 13:21:12 hamada>
+//Time-stamp: <2017-01-19 13:31:07 hamada>
 // A Tour of Go
 package main
 
@@ -379,6 +379,7 @@ func slice_of_slice_test() {
 }
 
 func appending_to_a_slice_test() {
+
 	var s []int
 	printSlice(s)
 
@@ -400,15 +401,38 @@ func appending_to_a_slice_test() {
 		s = append(s, v)
 		printSlice(s)
 	*/
-	
+	fmt.Println("more details about slices, ")
+	fmt.Println("\tsee: https://blog.golang.org/go-slices-usage-and-internals\n")
+}
+
+func range_test() {
+
+	var pow = []int{1, 2, 4, 8, 16, 32, 64, 128, 777}
+
+	for i, v := range pow {
+		fmt.Printf("2**%d = %d\n", i, v)
+	}
+
+	for _, v := range pow {
+		fmt.Printf("value only: %d\n", v)
+	}
+
+	for i, _ := range pow {
+		fmt.Printf("index only: %d\n", i)
+	}
+
+	for i := range pow {
+		fmt.Printf("index only: %d\n", i)
+	}
 
 }
 
 func main() {
 
-	appending_to_a_slice_test()
+	range_test()
 
 	if false {
+		appending_to_a_slice_test()
 		slice_of_slice_test()
 		slice_defaults_test()
 		slice_literals_test()
