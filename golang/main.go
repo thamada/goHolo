@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 12:34:39 hamada>
+//Time-stamp: <2017-01-19 12:42:48 hamada>
 // A Tour of Go
 package main
 
@@ -314,11 +314,28 @@ func slice_defaults_test() {
 
 	//	s = s[:4] // Error
 
+	// len 0, cap 0
+	s = s[3:]
+	printSlice(s)
+
+	if s != nil {
+		fmt.Println("s is NOT nil!")
+	}
+
+	var ss []int
+	s = ss
+	printSlice(s)
+
+	if s == nil {
+		fmt.Println("s is nil!")
+	}
+
 }
 
 func printSlice(s []int) {
 	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
 }
+
 
 func main() {
 
