@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-20 02:49:04 hamada>
+//Time-stamp: <2017-01-20 02:57:02 hamada>
 
 package main
 
@@ -514,16 +514,22 @@ func func_value_test() {
 	fmt.Printf("compute:  %T\n", compute)
 }
 
-func adder() func(int) int {
-	sum := 0
-	return func(x int) int {
-		sum += x
-		return sum
-	}
-}
 
 func closures_test() {
+
+	adder := func() func(int) int {
+		sum := 0
+		return func(x int) int {
+			sum += x
+			return sum
+		}
+	}
+
 	pos, neg := adder(), adder()
+
+	fmt.Printf("%T\n", adder)
+	fmt.Printf("%T\n", neg)
+	fmt.Printf("%T\n", neg)
 
 	for i := 0; i < 10; i++ {
 		fmt.Println(
@@ -531,7 +537,6 @@ func closures_test() {
 			neg(-2*i),
 		)
 	}
-
 }
 
 func main() {
