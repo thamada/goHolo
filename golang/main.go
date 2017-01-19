@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 12:42:48 hamada>
+//Time-stamp: <2017-01-19 12:56:45 hamada>
 // A Tour of Go
 package main
 
@@ -330,10 +330,29 @@ func slice_defaults_test() {
 		fmt.Println("s is nil!")
 	}
 
+	a := make([]int, 5)
+	printSlice2("a", a)
+
+	b := make([]int, 0, 5)
+	printSlice2("b", b)
+
+	c := b[:3]
+	printSlice2("c", c)
+
+	d := c[2:5]
+	printSlice2("d", d)
+
+	d[0] = 777
+	fmt.Println(a, b, c, d)
+
 }
 
 func printSlice(s []int) {
 	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+}
+
+func printSlice2(txt string, s []int) {
+	fmt.Printf("%s len=%d cap=%d %v\n", txt, len(s), cap(s), s)
 }
 
 
