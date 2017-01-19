@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 10:28:13 hamada>
+//Time-stamp: <2017-01-19 12:34:39 hamada>
 // A Tour of Go
 package main
 
@@ -292,21 +292,27 @@ func slice_literals_test() {
 
 func slice_defaults_test() {
 
+	// len 6, cap 6
 	s := []int{700, 701, 702, 703, 704, 705}
+	printSlice(s)
 
-	printSlice(s[0:6])
-
+	// len 0, cap 6
 	s = s[:0]
 	printSlice(s)
 
+	// len 6, cap 6
 	s = s[:6]
 	printSlice(s)
 
+	// len 4, cap 4
 	s = s[2:]
 	printSlice(s)
 
+	// len 3, cap 3
 	s = s[1:]
 	printSlice(s)
+
+	//	s = s[:4] // Error
 
 }
 
