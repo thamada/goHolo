@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-19 09:53:55 hamada>
+//Time-stamp: <2017-01-19 10:00:12 hamada>
 // A Tour of Go
 package main
 
@@ -233,11 +233,24 @@ func array_test() {
 	fmt.Println(a[0], a[1])
 	fmt.Println(a)
 
-	primes := [6]int{2, 3, 5, 7, 11, 13}
+	primes := [6]int{0, 1, 2, 3, 4, 5}
 	fmt.Println(primes)
 
-	var s []int = primes[1:4]
-	fmt.Println(s)
+	for i := 0; i < 6; i++ {
+		var s []int = primes[0:i+1]
+		fmt.Println(i+1, s)
+	}
+
+	for i := 0; i < 6; i++ {
+		var s []int = primes[i:6]
+		fmt.Println(i, s)
+	}
+
+	for i := 0; i < 6; i++ {
+		var s []int = primes[i:i+1]
+		fmt.Println(i, s)
+	}
+
 }
 
 func main() {
