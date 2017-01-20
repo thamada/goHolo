@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-21 06:09:41 hamada>
+//Time-stamp: <2017-01-21 06:15:27 hamada>
 
 package main
 
@@ -538,24 +538,27 @@ func closures_test() {
 	}
 }
 
-func fibonacci() func() int {
-	z0 := 0
-	z1 := 1
-	fmt.Println(z0)
-	fmt.Println(z1)
-	return func() int {
-		z2 := z1 + z0
-		z0 = z1
-		z1 = z2
-		return z2
-	}
-}
-
 func fb_test() {
-	f := fibonacci()
-	for i := 0; i < 10; i++ {
+	
+	fibo := func() func() int {
+		z0 := 0
+		z1 := 1
+		fmt.Println(z0)
+		fmt.Println(z1)
+		return func() int {
+			z2 := z1 + z0
+			z0 = z1
+			z1 = z2
+			return z2
+		}
+	}
+
+	f := fibo()  // f is a closure
+
+	for i := 0; i < 30; i++ {
 		fmt.Println(f())
 	}
+
 }
 
 func main() {
