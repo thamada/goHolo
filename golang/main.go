@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-21 06:28:26 hamada>
+//Time-stamp: <2017-01-21 06:30:03 hamada>
 
 package main
 
@@ -567,14 +567,15 @@ type Vertex struct {
 }
 
 
-func (v Vertex) Abs() float64 {
-	return math.Sqrt(v.X*v.X + v.Y*v.Y)
-}
 
 func method_test() {
 
+	Abs := func (v Vertex) float64 {
+		return math.Sqrt(v.X*v.X + v.Y*v.Y)
+	}
+
 	v := Vertex{3, 4}
-	fmt.Println(v.Abs())
+	fmt.Println(Abs(v))
 
 }
 
