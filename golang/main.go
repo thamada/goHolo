@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-20 02:57:02 hamada>
+//Time-stamp: <2017-01-21 06:09:41 hamada>
 
 package main
 
@@ -514,11 +514,10 @@ func func_value_test() {
 	fmt.Printf("compute:  %T\n", compute)
 }
 
-
 func closures_test() {
 
 	adder := func() func(int) int {
-		sum := 0
+		sum := 0 // bind to closure
 		return func(x int) int {
 			sum += x
 			return sum
@@ -539,11 +538,32 @@ func closures_test() {
 	}
 }
 
+func fibonacci() func() int {
+	z0 := 0
+	z1 := 1
+	fmt.Println(z0)
+	fmt.Println(z1)
+	return func() int {
+		z2 := z1 + z0
+		z0 = z1
+		z1 = z2
+		return z2
+	}
+}
+
+func fb_test() {
+	f := fibonacci()
+	for i := 0; i < 10; i++ {
+		fmt.Println(f())
+	}
+}
+
 func main() {
 
-	closures_test()
+	fb_test()
 
 	if false {
+		closures_test()
 		func_value_test()
 		maintain_map_test()
 		map_literals_test()
