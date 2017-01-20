@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-21 06:15:27 hamada>
+//Time-stamp: <2017-01-21 06:28:26 hamada>
 
 package main
 
@@ -195,12 +195,13 @@ func pointer_test() {
 	fmt.Printf("%T\n", p)
 }
 
-type Vertex struct {
-	X int
-	Y int
-}
-
 func struct_test() {
+
+	type Vertex struct {
+		X int
+		Y int
+	}
+
 	v := Vertex{1, 2}
 	v.X = 4
 	fmt.Println(v)
@@ -539,7 +540,7 @@ func closures_test() {
 }
 
 func fb_test() {
-	
+
 	fibo := func() func() int {
 		z0 := 0
 		z1 := 1
@@ -553,7 +554,7 @@ func fb_test() {
 		}
 	}
 
-	f := fibo()  // f is a closure
+	f := fibo() // f is a closure
 
 	for i := 0; i < 30; i++ {
 		fmt.Println(f())
@@ -561,11 +562,28 @@ func fb_test() {
 
 }
 
+type Vertex struct {
+	X, Y float64
+}
+
+
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+func method_test() {
+
+	v := Vertex{3, 4}
+	fmt.Println(v.Abs())
+
+}
+
 func main() {
 
-	fb_test()
+	method_test()
 
 	if false {
+		fb_test()
 		closures_test()
 		func_value_test()
 		maintain_map_test()
