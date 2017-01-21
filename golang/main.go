@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 05:46:24 hamada>
+//Time-stamp: <2017-01-22 05:51:24 hamada>
 package main
 
 import (
@@ -598,6 +598,10 @@ type I interface {
 	M()
 }
 
+type II interface {
+	M()
+}
+
 type T struct {
 	S string
 }
@@ -608,10 +612,18 @@ func (t T) M() {
 	fmt.Println(t.S)
 }
 
+// This method means type T implements the interface II,
+// but we don't need to explicitly declare that it does so.
+func (t *T) M() {
+	fmt.Println(t.S)
+}
+
 func implicit_interface_test() {
-	var a I = T{"Hello"}
+	var a I = T{"Interface I"}
+	var b II = &T{"Interface II"}
 
 	a.M()
+	b.M()
 
 }
 
