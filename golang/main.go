@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 05:38:04 hamada>
+//Time-stamp: <2017-01-22 05:46:03 hamada>
 package main
 
 import (
@@ -561,6 +561,7 @@ func fb_test() {
 
 }
 
+//------------------------ interface_test
 type Abser interface {
 	Abs() float64
 }
@@ -586,27 +587,41 @@ func interface_test() {
 	var a Abser
 	f := MyFloat(-math.Sqrt2)
 	v := Vertex{3, 4}
-
-	a = f  // a MyFloat implements Abser
+	a = f // a MyFloat implements Abser
 	fmt.Println(a.Abs())
-
 	a = &v // a *Vertex implements Abser
 	fmt.Println(a.Abs())
+}
 
-	// In the following line, v is a Vertex (not *Vertex)
-	// and does NOT implement Abser.
-	/*
-		a = v
-	*/
+//------------------------ implicit_interface_test
+type I interface {
+	M()
+}
 
+type T struct {
+	S string
+}
 
+// This method means type T implements the interface I,
+// but we don't need to explicitly declare that it does so.
+func (t T) M() {
+	fmt.Println(t.S)
+}
+
+func implicit_interface_test() {
+	var a I
+	b := T{"Hello"}
+	a = b
+
+	a.M()
 }
 
 func main() {
 
-	interface_test()
+	implicit_interface_test()
 
 	if false {
+		interface_test()
 		fb_test()
 		closures_test()
 		func_value_test()
@@ -625,7 +640,7 @@ func main() {
 		switch_test()
 	}
 
-	if 0 == 1 {
+	if false {
 		e_max := 0.0
 		for i := 0; i < 0x1000; i++ {
 			x := float64(i)
@@ -640,7 +655,7 @@ func main() {
 		}
 	}
 
-	if 0 == 1 {
+	if false {
 		fmt.Println(
 			pow(3, 3, 10),
 			pow(3, 4, 20),
