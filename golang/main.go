@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 05:46:03 hamada>
+//Time-stamp: <2017-01-22 05:46:24 hamada>
 package main
 
 import (
@@ -609,11 +609,10 @@ func (t T) M() {
 }
 
 func implicit_interface_test() {
-	var a I
-	b := T{"Hello"}
-	a = b
+	var a I = T{"Hello"}
 
 	a.M()
+
 }
 
 func main() {
