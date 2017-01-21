@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 06:13:39 hamada>
+//Time-stamp: <2017-01-22 06:14:12 hamada>
 package main
 
 import (
@@ -685,6 +685,10 @@ func implicit_interface_test() {
 		fmt.Printf("(%v, %T)\n", a, a)
 		fmt.Printf("(%v, %T)\n", b, b)
 	*/
+
+	a = F64(math.Pi)
+	a.M()
+	fmt.Printf("(%v, %T)\n", a, a)
 
 }
 
