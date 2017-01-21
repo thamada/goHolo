@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-21 12:28:20 hamada>
+//Time-stamp: <2017-01-21 12:29:12 hamada>
 
 package main
 
@@ -562,27 +562,27 @@ func fb_test() {
 
 }
 
-type Vertex struct {
+type __Vertex struct {
 	X, Y float64
 }
 
-func (v Vertex) Abs() float64 {
+func (v __Vertex) Abs() float64 {
 	return math.Sqrt(v.X*v.X + v.Y*v.Y)
 }
 
-func (v Vertex) Scale(f float64) {
+func (v __Vertex) Scale(f float64) {
 	v.X = v.X * f
 	v.Y = v.Y * f
 }
 
-func (v *Vertex) Scale_p(f float64) {
+func (v *__Vertex) Scale_p(f float64) {
 	v.X = v.X * f
 	v.Y = v.Y * f
 }
 
 func method_test() {
 
-	v := Vertex{3, 4}
+	v := __Vertex{3, 4}
 	v.Scale(10)
 	fmt.Println(v.Abs())
 	fmt.Println(v)
@@ -616,9 +616,10 @@ func pointer_function_test() {
 func main() {
 
 	pointer_function_test()
+	method_test()
 
 	if false {
-		method_test()
+
 		fb_test()
 		closures_test()
 		func_value_test()
