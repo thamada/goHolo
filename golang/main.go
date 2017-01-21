@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 05:36:41 hamada>
+//Time-stamp: <2017-01-22 05:38:04 hamada>
 package main
 
 import (
@@ -588,7 +588,10 @@ func interface_test() {
 	v := Vertex{3, 4}
 
 	a = f  // a MyFloat implements Abser
+	fmt.Println(a.Abs())
+
 	a = &v // a *Vertex implements Abser
+	fmt.Println(a.Abs())
 
 	// In the following line, v is a Vertex (not *Vertex)
 	// and does NOT implement Abser.
@@ -596,7 +599,7 @@ func interface_test() {
 		a = v
 	*/
 
-	fmt.Println(a.Abs())
+
 }
 
 func main() {
