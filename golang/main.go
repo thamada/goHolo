@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-21 12:41:15 hamada>
+//Time-stamp: <2017-01-21 12:47:09 hamada>
 
 package main
 
@@ -566,7 +566,7 @@ type __Vertex struct {
 	X, Y float64
 }
 
-func (v __Vertex) Abs() float64 {
+func (v *__Vertex) Abs() float64 {
 	return math.Sqrt(v.X*v.X + v.Y*v.Y)
 }
 
@@ -594,6 +594,11 @@ func method_test() {
 	(*v).Scale_p(0.1)
 	fmt.Println((*v).Abs())
 	fmt.Println(*v)
+
+	v = &__Vertex{4, 3}
+	fmt.Printf("Before scaling: %+v, Abs: %v\n", v, v.Abs())
+	v.Scale_p(5)
+	fmt.Printf("After scaling: %+v, Abs: %v\n", v, v.Abs())
 
 }
 
