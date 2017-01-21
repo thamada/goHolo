@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-21 12:36:27 hamada>
+//Time-stamp: <2017-01-21 12:41:15 hamada>
 
 package main
 
@@ -582,18 +582,18 @@ func (v *__Vertex) Scale_p(f float64) {
 
 func method_test() {
 
-	v := __Vertex{3, 4}
+	v := &__Vertex{3, 4}
 	v.Scale(10)
 	fmt.Println(v.Abs())
-	fmt.Println(v)
+	fmt.Println(*v)
 
 	v.Scale_p(100)
 	fmt.Println(v.Abs())
-	fmt.Println(v)
+	fmt.Println(*v)
 
-	(&v).Scale_p(0.1)
-	fmt.Println(v.Abs())
-	fmt.Println(v)
+	(*v).Scale_p(0.1)
+	fmt.Println((*v).Abs())
+	fmt.Println(*v)
 
 }
 
