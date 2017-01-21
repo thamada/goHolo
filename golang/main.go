@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 05:27:14 hamada>
+//Time-stamp: <2017-01-22 05:36:41 hamada>
 package main
 
 import (
@@ -592,7 +592,9 @@ func interface_test() {
 
 	// In the following line, v is a Vertex (not *Vertex)
 	// and does NOT implement Abser.
-	a = v
+	/*
+		a = v
+	*/
 
 	fmt.Println(a.Abs())
 }
