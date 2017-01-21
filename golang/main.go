@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 05:51:24 hamada>
+//Time-stamp: <2017-01-22 06:00:24 hamada>
 package main
 
 import (
@@ -599,31 +599,52 @@ type I interface {
 }
 
 type II interface {
-	M()
+	MM()
 }
 
 type T struct {
 	S string
 }
 
-// This method means type T implements the interface I,
-// but we don't need to explicitly declare that it does so.
+// type T implements the interface I,
 func (t T) M() {
-	fmt.Println(t.S)
+	fmt.Println("T.M(): ", t.S)
 }
 
-// This method means type T implements the interface II,
-// but we don't need to explicitly declare that it does so.
-func (t *T) M() {
-	fmt.Println(t.S)
+// type T implements the interface II,
+func (t *T) MM() {
+	fmt.Println("&T.MM():",t.S)
+}
+
+type TT struct {
+	S string
+}
+
+// type TT implements the interface I,
+func (t TT) M() {
+	fmt.Println("TT.M(): ", t.S)
+}
+
+// type TT implements the interface II,
+func (t *TT) MM() {
+	fmt.Println("&TT.M(): ", t.S)
 }
 
 func implicit_interface_test() {
-	var a I = T{"Interface I"}
-	var b II = &T{"Interface II"}
+	var a I
+	var b II
 
+	a = T{"Interface I"}
+	b = &T{"Interface II"}
 	a.M()
-	b.M()
+	b.MM()
+
+	a = TT{"Interface I"}
+	b = &TT{"Interface II"}
+	a.M()
+	b.MM()
+
+
 
 }
 
