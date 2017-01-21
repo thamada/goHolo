@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 06:14:12 hamada>
+//Time-stamp: <2017-01-22 06:25:46 hamada>
 package main
 
 import (
@@ -689,6 +689,8 @@ func implicit_interface_test() {
 	a = F64(math.Pi)
 	a.M()
 	fmt.Printf("(%v, %T)\n", a, a)
+
+	z := &F64(-math.Pi) // cannot take the address of F64(-math.Pi)
 
 }
 
