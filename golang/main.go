@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-21 12:29:12 hamada>
+//Time-stamp: <2017-01-21 12:36:27 hamada>
 
 package main
 
@@ -587,9 +587,14 @@ func method_test() {
 	fmt.Println(v.Abs())
 	fmt.Println(v)
 
-	v.Scale_p(10)
+	v.Scale_p(100)
 	fmt.Println(v.Abs())
 	fmt.Println(v)
+
+	(&v).Scale_p(0.1)
+	fmt.Println(v.Abs())
+	fmt.Println(v)
+
 }
 
 func pointer_function_test() {
@@ -615,11 +620,10 @@ func pointer_function_test() {
 
 func main() {
 
-	pointer_function_test()
 	method_test()
 
 	if false {
-
+		pointer_function_test()
 		fb_test()
 		closures_test()
 		func_value_test()
