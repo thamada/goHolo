@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-21 13:05:42 hamada>
+//Time-stamp: <2017-01-22 05:25:05 hamada>
 package main
 
 import (
@@ -561,74 +561,10 @@ func fb_test() {
 
 }
 
-type __Vertex struct {
-	X, Y float64
-}
-
-func (v *__Vertex) Abs() float64 {
-	return math.Sqrt(v.X*v.X + v.Y*v.Y)
-}
-
-func (v __Vertex) Scale(f float64) {
-	v.X = v.X * f
-	v.Y = v.Y * f
-}
-
-func (v *__Vertex) Scale_p(f float64) {
-	v.X = v.X * f
-	v.Y = v.Y * f
-}
-
-func method_test() {
-
-	v := &__Vertex{3, 4}
-	v.Scale(10)
-	fmt.Println(v.Abs())
-	fmt.Println(*v)
-
-	v.Scale_p(100)
-	fmt.Println(v.Abs())
-	fmt.Println(*v)
-
-	(*v).Scale_p(0.1)
-	fmt.Println((*v).Abs())
-	fmt.Println(*v)
-
-	v = &__Vertex{4, 3}
-	fmt.Printf("Before scaling: %+v, Abs: %v\n", v, v.Abs())
-	v.Scale_p(5)
-	fmt.Printf("After scaling: %+v, Abs: %v\n", v, v.Abs())
-
-}
-
-func pointer_function_test() {
-
-	type Vertex struct {
-		X, Y float64
-	}
-
-	Abs := func(v Vertex) float64 {
-		return math.Sqrt(v.X*v.X + v.Y*v.Y)
-	}
-
-	Scale := func(v *Vertex, f float64) {
-		v.X = v.X * f
-		v.Y = v.Y * f
-	}
-
-	v := Vertex{3, 4}
-	Scale(&v, 10)
-	fmt.Println(Abs(v))
-
-}
-
 func main() {
 
-	method_test()
 
 	if false {
-		pointer_function_test()
-		fb_test()
 		closures_test()
 		func_value_test()
 		maintain_map_test()
