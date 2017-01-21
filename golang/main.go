@@ -1,5 +1,4 @@
-//Time-stamp: <2017-01-21 12:47:09 hamada>
-
+//Time-stamp: <2017-01-21 13:05:42 hamada>
 package main
 
 import (

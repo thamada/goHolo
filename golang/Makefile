@@ -1,8 +1,7 @@
-#Time-stamp: <2017-01-16 04:01:09 hamada>
+#Time-stamp: <2017-01-21 13:08:37 hamada>
 
 build:
-	go build main.go 
-	mv main run.x
+	go build -o run.x main.go 
 	./run.x
 
 f:
