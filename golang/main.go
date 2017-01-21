@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 06:00:24 hamada>
+//Time-stamp: <2017-01-22 06:13:39 hamada>
 package main
 
 import (
@@ -613,7 +613,7 @@ func (t T) M() {
 
 // type T implements the interface II,
 func (t *T) MM() {
-	fmt.Println("&T.MM():",t.S)
+	fmt.Println("&T.MM():", t.S)
 }
 
 type TT struct {
@@ -630,6 +630,28 @@ func (t *TT) MM() {
 	fmt.Println("&TT.M(): ", t.S)
 }
 
+type F struct {
+	x float64
+}
+
+func (f F) M() {
+	fmt.Println(f.x)
+}
+
+func (f *F) MM() {
+	fmt.Println(f.x)
+}
+
+type F64 float64
+
+func (f F64) M() {
+	fmt.Println(f)
+}
+
+func (f *F64) MM() {
+	fmt.Println(f)
+}
+
 func implicit_interface_test() {
 	var a I
 	var b II
@@ -638,13 +660,31 @@ func implicit_interface_test() {
 	b = &T{"Interface II"}
 	a.M()
 	b.MM()
+	fmt.Printf("(%v, %T)\n", a, a)
+	fmt.Printf("(%v, %T)\n", b, b)
 
 	a = TT{"Interface I"}
 	b = &TT{"Interface II"}
 	a.M()
 	b.MM()
+	fmt.Printf("(%v, %T)\n", a, a)
+	fmt.Printf("(%v, %T)\n", b, b)
 
+	a = F{math.Pi}
+	b = &F{-math.Pi}
+	a.M()
+	b.MM()
+	fmt.Printf("(%v, %T)\n", a, a)
+	fmt.Printf("(%v, %T)\n", b, b)
 
+	/*
+		a = F64(math.Pi)
+		b = &F64(-math.Pi)
+		a.M()
+		b.MM()
+		fmt.Printf("(%v, %T)\n", a, a)
+		fmt.Printf("(%v, %T)\n", b, b)
+	*/
 
 }
 
