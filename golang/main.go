@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-21 06:30:03 hamada>
+//Time-stamp: <2017-01-21 12:28:20 hamada>
 
 package main
 
@@ -566,24 +566,59 @@ type Vertex struct {
 	X, Y float64
 }
 
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
 
+func (v Vertex) Scale(f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
+}
+
+func (v *Vertex) Scale_p(f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
+}
 
 func method_test() {
 
-	Abs := func (v Vertex) float64 {
+	v := Vertex{3, 4}
+	v.Scale(10)
+	fmt.Println(v.Abs())
+	fmt.Println(v)
+
+	v.Scale_p(10)
+	fmt.Println(v.Abs())
+	fmt.Println(v)
+}
+
+func pointer_function_test() {
+
+	type Vertex struct {
+		X, Y float64
+	}
+
+	Abs := func(v Vertex) float64 {
 		return math.Sqrt(v.X*v.X + v.Y*v.Y)
 	}
 
+	Scale := func(v *Vertex, f float64) {
+		v.X = v.X * f
+		v.Y = v.Y * f
+	}
+
 	v := Vertex{3, 4}
+	Scale(&v, 10)
 	fmt.Println(Abs(v))
 
 }
 
 func main() {
 
-	method_test()
+	pointer_function_test()
 
 	if false {
+		method_test()
 		fb_test()
 		closures_test()
 		func_value_test()
