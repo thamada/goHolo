@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 06:25:46 hamada>
+//Time-stamp: <2017-01-22 09:21:59 hamada>
 package main
 
 import (
@@ -690,7 +690,24 @@ func implicit_interface_test() {
 	a.M()
 	fmt.Printf("(%v, %T)\n", a, a)
 
-	z := &F64(-math.Pi) // cannot take the address of F64(-math.Pi)
+	z := &F{1.0}
+	fmt.Printf("z:  (%v, %T) (%v, %T)\n", z, z, &z, &z)
+	z2 := &z
+	fmt.Printf("z2: (%v, %T) (%v, %T)\n", z2, z2, &z2, &z2)
+	z3 := &z2
+	fmt.Printf("z3: (%v, %T) (%v, %T)\n", z3, z3, &z3, &z3)
+	z4 := &z3
+	fmt.Printf("z4: (%v, %T) (%v, %T)\n", z4, z4, &z4, &z4)
+	fmt.Printf("(%v, %T) (%v, %T)\n", ****z4, ****z4, ***z4, ***z4)
+	var z5 *****F
+	fmt.Printf("z5: (%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
+	z5 = &z4
+	fmt.Printf("(%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
+	fmt.Printf("(%v, %T)\n", *****z5, *****z5)
+
+	var w *F64
+	fmt.Printf("(%v, %T)\n", w, w)
+
 
 }
 
