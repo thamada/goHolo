@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 09:21:59 hamada>
+//Time-stamp: <2017-01-22 09:24:48 hamada>
 package main
 
 import (
@@ -690,6 +690,10 @@ func implicit_interface_test() {
 	a.M()
 	fmt.Printf("(%v, %T)\n", a, a)
 
+
+}
+
+func pointer_game(){
 	z := &F{1.0}
 	fmt.Printf("z:  (%v, %T) (%v, %T)\n", z, z, &z, &z)
 	z2 := &z
@@ -707,15 +711,14 @@ func implicit_interface_test() {
 
 	var w *F64
 	fmt.Printf("(%v, %T)\n", w, w)
-
-
 }
 
 func main() {
 
-	implicit_interface_test()
-
+	pointer_game()
+	
 	if false {
+		implicit_interface_test()
 		interface_test()
 		fb_test()
 		closures_test()
