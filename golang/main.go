@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 09:24:48 hamada>
+//Time-stamp: <2017-01-22 09:33:22 hamada>
 package main
 
 import (
@@ -689,12 +689,16 @@ func implicit_interface_test() {
 	a = F64(math.Pi)
 	a.M()
 	fmt.Printf("(%v, %T)\n", a, a)
-
-
 }
 
-func pointer_game(){
-	z := &F{1.0}
+type ZEON int32
+
+func pointer_game() {
+
+	type ZEON float64
+
+	z := ZEON(1.23)
+	//	fmt.Printf("z:  (%v, %T) (%v, %T)\n", z, z, *z, *z)
 	fmt.Printf("z:  (%v, %T) (%v, %T)\n", z, z, &z, &z)
 	z2 := &z
 	fmt.Printf("z2: (%v, %T) (%v, %T)\n", z2, z2, &z2, &z2)
@@ -702,21 +706,23 @@ func pointer_game(){
 	fmt.Printf("z3: (%v, %T) (%v, %T)\n", z3, z3, &z3, &z3)
 	z4 := &z3
 	fmt.Printf("z4: (%v, %T) (%v, %T)\n", z4, z4, &z4, &z4)
-	fmt.Printf("(%v, %T) (%v, %T)\n", ****z4, ****z4, ***z4, ***z4)
-	var z5 *****F
-	fmt.Printf("z5: (%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
-	z5 = &z4
-	fmt.Printf("(%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
-	fmt.Printf("(%v, %T)\n", *****z5, *****z5)
-
-	var w *F64
+	/*
+		fmt.Printf("(%v, %T) (%v, %T)\n", ****z4, ****z4, ***z4, ***z4)
+		var z5 *****ZEON
+		fmt.Printf("z5: (%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
+		z5 = &z4
+		fmt.Printf("(%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
+		fmt.Printf("(%v, %T)\n", *****z5, *****z5)
+	*/
+	var w *ZEON
 	fmt.Printf("(%v, %T)\n", w, w)
+
 }
 
 func main() {
 
 	pointer_game()
-	
+
 	if false {
 		implicit_interface_test()
 		interface_test()
