@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 09:37:24 hamada>
+//Time-stamp: <2017-01-22 09:39:46 hamada>
 package main
 
 import (
@@ -691,13 +691,15 @@ func implicit_interface_test() {
 	fmt.Printf("(%v, %T)\n", a, a)
 }
 
-type ZEON int32
+type ZEON struct {
+	x float64
+}
 
 func pointer_game() {
 
-	type ZEON float64
+	type ZEON__ float64
 
-	z := ZEON(1.23)
+	z := ZEON{1.23}
 	//	fmt.Printf("z:  (%v, %T) (%v, %T)\n", z, z, *z, *z)
 	fmt.Printf("z:  (%v, %T) (%v, %T)\n", z, z, &z, &z)
 	z2 := &z
@@ -721,7 +723,7 @@ func pointer_game() {
 	   	fmt.Printf("(%v, %T)\n", w, w)
 	*/
 
-	w := &ZEON(7.77)
+	w := &ZEON{7.77}
 	fmt.Printf("(%v, %T)\n", w, w)
 
 
