@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 09:33:22 hamada>
+//Time-stamp: <2017-01-22 09:37:24 hamada>
 package main
 
 import (
@@ -708,14 +708,22 @@ func pointer_game() {
 	fmt.Printf("z4: (%v, %T) (%v, %T)\n", z4, z4, &z4, &z4)
 	/*
 		fmt.Printf("(%v, %T) (%v, %T)\n", ****z4, ****z4, ***z4, ***z4)
-		var z5 *****ZEON
-		fmt.Printf("z5: (%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
-		z5 = &z4
-		fmt.Printf("(%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
-		fmt.Printf("(%v, %T)\n", *****z5, *****z5)
 	*/
-	var w *ZEON
+	var z5 ****ZEON
+	fmt.Printf("z5: (%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
+	z5 = &z4
+	fmt.Printf("z5: (%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
+	fmt.Printf("(%v, %T)\n", ****z5, ****z5)
+
+	/*
+	     // cannot take the address of ZEON(7.77)
+	   	w := &ZEON(7.77)
+	   	fmt.Printf("(%v, %T)\n", w, w)
+	*/
+
+	w := &ZEON(7.77)
 	fmt.Printf("(%v, %T)\n", w, w)
+
 
 }
 
