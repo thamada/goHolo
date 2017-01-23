@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-22 09:39:46 hamada>
+//Time-stamp: <2017-01-24 04:25:59 hamada>
 package main
 
 import (
@@ -652,9 +652,49 @@ func (f *F64) MM() {
 	fmt.Println(f)
 }
 
+func pointer_game() {
+
+	//	type ZEON float64
+
+	type ZEON struct {
+		x float64
+	}
+
+	z := &ZEON{1.23}
+	fmt.Printf("z:  (%v, %T) (%v, %T)\n", z, z, *z, *z)
+	fmt.Printf("z:  (%v, %T) (%v, %T)\n", z, z, &z, &z)
+	z2 := &z
+	fmt.Printf("z2: (%v, %T) (%v, %T)\n", z2, z2, &z2, &z2)
+	z3 := &z2
+	fmt.Printf("z3: (%v, %T) (%v, %T)\n", z3, z3, &z3, &z3)
+	z4 := &z3
+	fmt.Printf("z4: (%v, %T) (%v, %T)\n", z4, z4, &z4, &z4)
+	fmt.Printf("(%v, %T) (%v, %T)\n", ****z4, ****z4, ***z4, ***z4)
+
+	var z5 *****ZEON
+	fmt.Printf("z5: (%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
+	z5 = &z4
+	fmt.Printf("z5: (%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
+	fmt.Printf("(%v, %T)\n", ****z5, ****z5)
+
+	/*
+	     // cannot take the address of ZEON(7.77)
+	   	w := &ZEON(7.77)
+	   	fmt.Printf("(%v, %T)\n", w, w)
+	*/
+
+	w := &ZEON{7.77}
+	fmt.Printf("(%v, %T)\n", w, w)
+
+}
+
 func implicit_interface_test() {
 	var a I
 	var b II
+
+	fmt.Println(a, b)
+	fmt.Printf("(%v, %T)\n", a, a)
+	fmt.Printf("(%v, %T)\n", b, b)
 
 	a = T{"Interface I"}
 	b = &T{"Interface II"}
@@ -689,52 +729,22 @@ func implicit_interface_test() {
 	a = F64(math.Pi)
 	a.M()
 	fmt.Printf("(%v, %T)\n", a, a)
-}
+	fmt.Printf("(%v, %T)\n", &a, &a)
 
-type ZEON struct {
-	x float64
-}
-
-func pointer_game() {
-
-	type ZEON__ float64
-
-	z := ZEON{1.23}
-	//	fmt.Printf("z:  (%v, %T) (%v, %T)\n", z, z, *z, *z)
-	fmt.Printf("z:  (%v, %T) (%v, %T)\n", z, z, &z, &z)
-	z2 := &z
-	fmt.Printf("z2: (%v, %T) (%v, %T)\n", z2, z2, &z2, &z2)
-	z3 := &z2
-	fmt.Printf("z3: (%v, %T) (%v, %T)\n", z3, z3, &z3, &z3)
-	z4 := &z3
-	fmt.Printf("z4: (%v, %T) (%v, %T)\n", z4, z4, &z4, &z4)
+	// cannot use F64(math.Pi) (type F64) as type II in assignment:
+	// F64 does not implement II (MM method has pointer receiver)
 	/*
-		fmt.Printf("(%v, %T) (%v, %T)\n", ****z4, ****z4, ***z4, ***z4)
+		b = F64(math.Pi)
+		fmt.Printf("(%v, %T)\n", &b, &b)
 	*/
-	var z5 ****ZEON
-	fmt.Printf("z5: (%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
-	z5 = &z4
-	fmt.Printf("z5: (%v, %T) (%v, %T)\n", z5, z5, &z5, &z5)
-	fmt.Printf("(%v, %T)\n", ****z5, ****z5)
-
-	/*
-	     // cannot take the address of ZEON(7.77)
-	   	w := &ZEON(7.77)
-	   	fmt.Printf("(%v, %T)\n", w, w)
-	*/
-
-	w := &ZEON{7.77}
-	fmt.Printf("(%v, %T)\n", w, w)
-
 
 }
 
 func main() {
-
-	pointer_game()
+	implicit_interface_test()
 
 	if false {
-		implicit_interface_test()
+		pointer_game()
 		interface_test()
 		fb_test()
 		closures_test()
