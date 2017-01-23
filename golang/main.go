@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-24 05:15:26 hamada>
+//Time-stamp: <2017-01-24 05:27:08 hamada>
 package main
 
 import (
@@ -561,38 +561,6 @@ func fb_test() {
 
 }
 
-//------------------------ interface_test
-type Abser interface {
-	Abs() float64
-}
-
-type MyFloat float64
-
-func (f MyFloat) Abs() float64 {
-	if f < 0 {
-		return float64(-f)
-	}
-	return float64(f)
-}
-
-type Vertex struct {
-	X, Y float64
-}
-
-func (v *Vertex) Abs() float64 {
-	return math.Sqrt(v.X*v.X + v.Y*v.Y)
-}
-
-func interface_test() {
-	var a Abser
-	f := MyFloat(-math.Sqrt2)
-	v := Vertex{3, 4}
-	a = f // a MyFloat implements Abser
-	fmt.Println(a.Abs())
-	a = &v // a *Vertex implements Abser
-	fmt.Println(a.Abs())
-}
-
 func pointer_game() {
 
 	//	type ZEON float64
@@ -627,6 +595,38 @@ func pointer_game() {
 	w := &ZEON{7.77}
 	fmt.Printf("(%v, %T)\n", w, w)
 
+}
+
+//------------------------ interface_test
+type Abser interface {
+	Abs() float64
+}
+
+type MyFloat float64
+
+func (f MyFloat) Abs() float64 {
+	if f < 0 {
+		return float64(-f)
+	}
+	return float64(f)
+}
+
+type Vertex struct {
+	X, Y float64
+}
+
+func (v *Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+func interface_test() {
+	var a Abser
+	f := MyFloat(-math.Sqrt2)
+	v := Vertex{3, 4}
+	a = f // a MyFloat implements Abser
+	fmt.Println(a.Abs())
+	a = &v // a *Vertex implements Abser
+	fmt.Println(a.Abs())
 }
 
 //------------------------ implicit_interface_test
@@ -697,6 +697,10 @@ func (f F64STR) M() {
 }
 
 func (f *F64STR) MM() {
+	if f == nil {
+		fmt.Println("receiver is nil object: nihil nihil nihil")
+		return
+	}
 	fmt.Println("(*F64STR).x: ", f.x)
 }
 
@@ -769,12 +773,18 @@ func implicit_interface_test() {
 	fmt.Printf("(%v, %T)\n", b, b)
 
 	// no problem
-	var c *F64
-	d := F64(math.Pi)
-	c = &d
-	c.MM()
-	fmt.Printf("(%v, %T)\n", c, c)
+	if false {
+		var c *F64
+		d := F64(math.Pi)
+		c = &d
+		c.MM()
+		fmt.Printf("(%v, %T)\n", c, c)
+	}
 
+	var c *F64STR
+	b = c
+	b.MM()
+	fmt.Printf("(%v, %T)\n", b, b)
 }
 
 func main() {
