@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-24 04:25:59 hamada>
+//Time-stamp: <2017-01-24 04:31:10 hamada>
 package main
 
 import (
@@ -625,33 +625,6 @@ func (t TT) M() {
 	fmt.Println("TT.M(): ", t.S)
 }
 
-// type TT implements the interface II,
-func (t *TT) MM() {
-	fmt.Println("&TT.M(): ", t.S)
-}
-
-type F struct {
-	x float64
-}
-
-func (f F) M() {
-	fmt.Println(f.x)
-}
-
-func (f *F) MM() {
-	fmt.Println(f.x)
-}
-
-type F64 float64
-
-func (f F64) M() {
-	fmt.Println(f)
-}
-
-func (f *F64) MM() {
-	fmt.Println(f)
-}
-
 func pointer_game() {
 
 	//	type ZEON float64
@@ -686,6 +659,46 @@ func pointer_game() {
 	w := &ZEON{7.77}
 	fmt.Printf("(%v, %T)\n", w, w)
 
+}
+
+
+// type TT implements the interface II,
+func (t *TT) MM() {
+	fmt.Println("&TT.M(): ", t.S)
+}
+
+type F struct {
+	x float64
+}
+
+func (f F) M() {
+	fmt.Println(f.x)
+}
+
+func (f *F) MM() {
+	fmt.Println(f.x)
+}
+
+type F64 float64
+
+func (f F64) M() {
+	fmt.Println(f)
+}
+
+func (f *F64) MM() {
+	fmt.Println(f)
+}
+
+type F64STR struct{
+	x float64
+}
+
+func (f F64STR) M() {
+	fmt.Println(f)
+}
+
+func (f *F64STR) MM() {
+	fmt.Println("(*F64STR).x: ", f.x)
 }
 
 func implicit_interface_test() {
@@ -737,6 +750,24 @@ func implicit_interface_test() {
 		b = F64(math.Pi)
 		fmt.Printf("(%v, %T)\n", &b, &b)
 	*/
+
+	// cannot use &a (type *I) as type II in assignment:
+	// *I is pointer to interface, not interface
+	/*
+		b = &a
+		fmt.Printf("(%v, %T)\n", b, b)
+	*/
+
+	//cannot take the address of F64(math.Pi)
+	/*
+		b = &F64(math.Pi)
+		fmt.Printf("(%v, %T)\n", b, b)
+	*/
+
+	// no problem 
+	b = &F64STR{math.Pi}
+	b.MM()
+	fmt.Printf("(%v, %T)\n", b, b)
 
 }
 
