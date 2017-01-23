@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-24 04:31:10 hamada>
+//Time-stamp: <2017-01-24 05:15:26 hamada>
 package main
 
 import (
@@ -593,38 +593,6 @@ func interface_test() {
 	fmt.Println(a.Abs())
 }
 
-//------------------------ implicit_interface_test
-type I interface {
-	M()
-}
-
-type II interface {
-	MM()
-}
-
-type T struct {
-	S string
-}
-
-// type T implements the interface I,
-func (t T) M() {
-	fmt.Println("T.M(): ", t.S)
-}
-
-// type T implements the interface II,
-func (t *T) MM() {
-	fmt.Println("&T.MM():", t.S)
-}
-
-type TT struct {
-	S string
-}
-
-// type TT implements the interface I,
-func (t TT) M() {
-	fmt.Println("TT.M(): ", t.S)
-}
-
 func pointer_game() {
 
 	//	type ZEON float64
@@ -661,6 +629,37 @@ func pointer_game() {
 
 }
 
+//------------------------ implicit_interface_test
+type I interface {
+	M()
+}
+
+type II interface {
+	MM()
+}
+
+type T struct {
+	S string
+}
+
+// type T implements the interface I,
+func (t T) M() {
+	fmt.Println("T.M(): ", t.S)
+}
+
+// type T implements the interface II,
+func (t *T) MM() {
+	fmt.Println("&T.MM():", t.S)
+}
+
+type TT struct {
+	S string
+}
+
+// type TT implements the interface I,
+func (t TT) M() {
+	fmt.Println("TT.M(): ", t.S)
+}
 
 // type TT implements the interface II,
 func (t *TT) MM() {
@@ -689,7 +688,7 @@ func (f *F64) MM() {
 	fmt.Println(f)
 }
 
-type F64STR struct{
+type F64STR struct {
 	x float64
 }
 
@@ -764,10 +763,17 @@ func implicit_interface_test() {
 		fmt.Printf("(%v, %T)\n", b, b)
 	*/
 
-	// no problem 
+	// no problem
 	b = &F64STR{math.Pi}
 	b.MM()
 	fmt.Printf("(%v, %T)\n", b, b)
+
+	// no problem
+	var c *F64
+	d := F64(math.Pi)
+	c = &d
+	c.MM()
+	fmt.Printf("(%v, %T)\n", c, c)
 
 }
 
