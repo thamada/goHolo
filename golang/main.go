@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-24 05:42:38 hamada>
+//Time-stamp: <2017-01-24 06:27:02 hamada>
 package main
 
 import (
@@ -792,7 +792,7 @@ func implicit_interface_test() {
 		panic: runtime error: invalid memory address or nil pointer dereference
 		[signal SIGSEGV: segmentation violation code=0x1 addr=0x20 pc=0x3799]
 	*/
-	if(false){
+	if false {
 		var c I
 		c.M()
 		fmt.Printf("(%v, %T)\n", c, c)
@@ -807,12 +807,22 @@ func implicit_interface_test() {
 		fmt.Printf("(%v, %T)\n", c, c)
 		c = F64(math.Pi)
 		fmt.Printf("(%v, %T)\n", c, c)
- 		fmt.Printf("(%v, %T)\n", c, c)
 		//		c.M() // c.M undefined (type interface {} is interface with no methods)
-		
 	}
 
-	
+	{
+		fmt.Println("--- Type Assertion ---")
+		var i interface{} = "hello"
+
+		s, ok := i.(string)
+		fmt.Println(s, ok)
+
+		f, ok := i.(float64)
+		fmt.Println(f, ok)
+
+		f = i.(float64) // panic
+		fmt.Println(f)
+	}
 
 }
 
