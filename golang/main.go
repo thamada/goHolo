@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-24 06:27:02 hamada>
+//Time-stamp: <2017-01-24 06:40:13 hamada>
 package main
 
 import (
@@ -820,8 +820,26 @@ func implicit_interface_test() {
 		f, ok := i.(float64)
 		fmt.Println(f, ok)
 
-		f = i.(float64) // panic
-		fmt.Println(f)
+		// f = i.(float64) // panic
+		// fmt.Println(f)
+	}
+
+	{
+		do := func(i interface{}) {
+			switch v := i.(type) {
+			case int:
+				fmt.Printf("Twice %v is %v\n", v, v*2)
+			case string:
+				fmt.Printf("%q is %v bytes long\n", v, len(v))
+			default:
+				fmt.Printf("I don't know about type %T!\n", v)
+			}
+		}
+		do(21)
+		do("hello")
+		do(true)
+		do(main)
+		do(do)
 	}
 
 }
