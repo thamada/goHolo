@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-24 05:27:08 hamada>
+//Time-stamp: <2017-01-24 05:42:38 hamada>
 package main
 
 import (
@@ -698,7 +698,7 @@ func (f F64STR) M() {
 
 func (f *F64STR) MM() {
 	if f == nil {
-		fmt.Println("receiver is nil object: nihil nihil nihil")
+		fmt.Println("receiver is nil object: nil comes from nihil.", f)
 		return
 	}
 	fmt.Println("(*F64STR).x: ", f.x)
@@ -773,7 +773,7 @@ func implicit_interface_test() {
 	fmt.Printf("(%v, %T)\n", b, b)
 
 	// no problem
-	if false {
+	{
 		var c *F64
 		d := F64(math.Pi)
 		c = &d
@@ -781,10 +781,39 @@ func implicit_interface_test() {
 		fmt.Printf("(%v, %T)\n", c, c)
 	}
 
-	var c *F64STR
-	b = c
-	b.MM()
-	fmt.Printf("(%v, %T)\n", b, b)
+	{
+		var c *F64STR
+		b = c
+		b.MM()
+		fmt.Printf("(%v, %T)\n", b, b)
+	}
+
+	/*
+		panic: runtime error: invalid memory address or nil pointer dereference
+		[signal SIGSEGV: segmentation violation code=0x1 addr=0x20 pc=0x3799]
+	*/
+	if(false){
+		var c I
+		c.M()
+		fmt.Printf("(%v, %T)\n", c, c)
+	}
+
+	{
+		var c interface{}
+		fmt.Printf("(%v, %T)\n", c, c)
+		c = math.Pi
+		fmt.Printf("(%v, %T)\n", c, c)
+		c = int64(777)
+		fmt.Printf("(%v, %T)\n", c, c)
+		c = F64(math.Pi)
+		fmt.Printf("(%v, %T)\n", c, c)
+ 		fmt.Printf("(%v, %T)\n", c, c)
+		//		c.M() // c.M undefined (type interface {} is interface with no methods)
+		
+	}
+
+	
+
 }
 
 func main() {
