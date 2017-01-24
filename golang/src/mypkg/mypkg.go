@@ -1,23 +1,20 @@
-//Time-stamp: <2017-01-24 11:35:11 hamada>
+//Time-stamp: <2017-01-24 11:44:12 hamada>
 package mypkg
 
 import (
 	"fmt"
 	"math"
-	"reflect"
 	"runtime"
-	"strings"
-	"time"
 )
 
-func sqrt(x float64) string {
+func Sqrt(x float64) string {
 	if x < 0 {
 		x = -x
 	}
 	return fmt.Sprint(math.Sqrt(x))
 }
 
-func pow(x, n, lim float64) float64 {
+func Pow(x, n, lim float64) float64 {
 	if v := math.Pow(x, n); v < lim {
 		return v
 	} else {
@@ -28,7 +25,7 @@ func pow(x, n, lim float64) float64 {
 	return lim
 }
 
-func switch_test() {
+func Switch_test() {
 
 	fmt.Println("GOOS: ", runtime.GOOS)
 	fmt.Println("GOARCH: ", runtime.GOARCH)

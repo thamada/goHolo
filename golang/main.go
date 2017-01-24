@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-24 11:20:47 hamada>
+//Time-stamp: <2017-01-24 11:44:21 hamada>
 package main
 
 import (
@@ -8,6 +8,7 @@ import (
 	"runtime"
 	"strings"
 	"time"
+	"mypkg"
 )
 
 // GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!
@@ -916,6 +917,7 @@ func (h Honda) fly() bool {
 func main() {
 
 	ducktyping_test()
+	mypkg.Switch_test()
 
 	if false {
 		pointer_game()
