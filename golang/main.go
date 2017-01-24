@@ -1,8 +1,8 @@
-//Time-stamp: <2017-01-24 11:52:19 hamada>
+//Time-stamp: <2017-01-24 11:56:40 hamada>
 package main
 
-import "mypkg"
+import "mypkg1"
 
 func main() {
-	mypkg.Main()
+	mypkg1.Main()
 }

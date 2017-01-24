@@ -1,5 +1,5 @@
-//Time-stamp: <2017-01-24 11:52:17 hamada>
-package mypkg
+//Time-stamp: <2017-01-24 11:56:18 hamada>
+package mypkg1
 import (
 	"fmt"
 	"math"
