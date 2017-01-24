@@ -1,5 +1,6 @@
-//Time-stamp: <2017-01-24 11:56:18 hamada>
+//Time-stamp: <2017-01-24 12:31:28 hamada>
 package mypkg1
+
 import (
 	"fmt"
 	"math"
@@ -23,10 +24,12 @@ func needFloat(x float64) float64 {
 }
 
 func forever_loop() {
-	// while(true)
-	for {
-	}
-	fmt.Println("Forever")
+	// unreachable code same as while(true)
+	/*
+		for {
+		}
+		fmt.Println("Forever")
+	*/
 }
 
 func sqrt(x float64) string {
@@ -58,7 +61,7 @@ func switch_test() {
 
 	fmt.Println("GOOS: ", runtime.GOOS)
 	fmt.Println("GOARCH: ", runtime.GOARCH)
-	fmt.Println("GOROOT: ", runtime.GOROOT)
+	fmt.Println("GOROOT: ", runtime.GOROOT())
 	fmt.Println("NumCPU: ", runtime.NumCPU())
 	fmt.Println("NumCgoCall: ", runtime.NumCgoCall())
 	fmt.Println("NumGoroutine: ", runtime.NumGoroutine())
@@ -382,7 +385,7 @@ func appending_to_a_slice_test() {
 		printSlice(s)
 	*/
 	fmt.Println("more details about slices, ")
-	fmt.Println("\tsee: https://blog.golang.org/go-slices-usage-and-internals\n")
+	fmt.Println("\tsee: https://blog.golang.org/go-slices-usage-and-internals")
 }
 
 func range_test() {
@@ -892,7 +895,7 @@ func ducktyping_test() {
 type ErrNegativeSqrt float64
 
 func (e ErrNegativeSqrt) Error() string {
-	if (e < 0) {
+	if e < 0 {
 		return fmt.Sprint(float64(e))
 	} else {
 		return ""
@@ -911,7 +914,6 @@ func (h Honda) drive() bool {
 func (h Honda) fly() bool {
 	return true
 }
-
 
 func Main() {
 
