@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-24 11:07:49 hamada>
+//Time-stamp: <2017-01-24 11:20:47 hamada>
 package main
 
 import (
@@ -868,6 +868,7 @@ func ducktyping_test() {
 
 	{
 		Sqrt := func(x float64) (float64, error) {
+			err := ErrNegativeSqrt(x)
 			z := x
 			zz := float64(0)
 
@@ -880,12 +881,23 @@ func ducktyping_test() {
 					z = zz
 				}
 			}
-			return z, nil
+			return z, err
 		}
+
 		fmt.Println(Sqrt(2))
 		fmt.Println(Sqrt(-2))
 	}
 
+}
+
+type ErrNegativeSqrt float64
+
+func (e ErrNegativeSqrt) Error() string {
+	if (e < 0) {
+		return fmt.Sprint(float64(e))
+	} else {
+		return ""
+	}
 }
 
 type Honda struct {
