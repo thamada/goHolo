@@ -1,13 +1,17 @@
-#Time-stamp: <2017-01-21 13:09:24 hamada>
+#Time-stamp: <2017-01-24 11:54:32 hamada>
+
+target = ./run.x
 
 build:
-	go build -o run.x main.go 
-	./run.x
+	go build -o ${target} main.go 
+	${target}
 
 gorun:
 	go run main.go 
 
-f:
-	gofmt main.go |tee tmp.go
-	@diff main.go tmp.go
 
+clean:
+	rm -rf *~ .*~ golang ${target} src/*~ 
+
+
+c: clean
