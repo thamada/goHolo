@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-24 06:40:13 hamada>
+//Time-stamp: <2017-01-24 10:34:15 hamada>
 package main
 
 import (
@@ -7,6 +7,7 @@ import (
 	"runtime"
 	"strings"
 	"time"
+	"reflect"
 )
 
 // GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!
@@ -840,14 +841,40 @@ func implicit_interface_test() {
 		do(true)
 		do(main)
 		do(do)
+		do(nil)
+	}
+
+	{
+		var a interface{} = 4649
+		var b int64
+		fmt.Println(a)
+		b = reflect.ValueOf(a).Int()
+		fmt.Println(b)
 	}
 
 }
 
+type Person struct {
+	Name string
+	Age  int
+}
+
+func (p Person) String() string {
+	return fmt.Sprintf("%v (%v years)", p.Name, p.Age)
+}
+
+func Stringer_test() {
+	a := Person{"Arthur Dent", 42}
+	z := Person{"Zaphod Beeblebrox", 9001}
+	fmt.Println(a, z)
+}
+
 func main() {
-	implicit_interface_test()
+
+	Stringer_test()
 
 	if false {
+		implicit_interface_test()
 		pointer_game()
 		interface_test()
 		fb_test()
