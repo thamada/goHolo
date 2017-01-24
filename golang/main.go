@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-24 11:00:35 hamada>
+//Time-stamp: <2017-01-24 11:07:49 hamada>
 package main
 
 import (
@@ -53,23 +53,6 @@ func pow(x, n, lim float64) float64 {
 	}
 	// can't use v here, though
 	return lim
-}
-
-func Sqrt(x float64) float64 {
-	z := x
-	zz := float64(0)
-
-	for i := 0; i < 10; i++ {
-		zz = z - (z*z-x)/(2*z)
-		//		fmt.Printf("%d: %g\n", i, zz)
-		if zz == z {
-			break
-		} else {
-			z = zz
-		}
-	}
-
-	return z
 }
 
 func switch_test() {
@@ -705,7 +688,7 @@ func (f *F64STR) MM() {
 	fmt.Println("(*F64STR).x: ", f.x)
 }
 
-func implicit_interface_test() {
+func ducktyping_test() {
 	var a I
 	var b II
 
@@ -871,9 +854,9 @@ func implicit_interface_test() {
 		}
 
 		/*
-		If Honda doesn't have fly() method, the following error happens:
-				  cannot use car (type Honda) as type Airplane in argument to check_plane:
-					Honda does not implement Airplane (missing fly method)
+			If Honda doesn't have fly() method, the following error happens:
+					  cannot use car (type Honda) as type Airplane in argument to check_plane:
+						Honda does not implement Airplane (missing fly method)
 		*/
 		check_plane := func(c Airplane) {
 			fmt.Printf("Airplane: (%v, %T)\n", c, c)
@@ -883,9 +866,28 @@ func implicit_interface_test() {
 		check_plane(car)
 	}
 
+	{
+		Sqrt := func(x float64) (float64, error) {
+			z := x
+			zz := float64(0)
+
+			for i := 0; i < 10; i++ {
+				zz = z - (z*z-x)/(2*z)
+				//		fmt.Printf("%d: %g\n", i, zz)
+				if zz == z {
+					break
+				} else {
+					z = zz
+				}
+			}
+			return z, nil
+		}
+		fmt.Println(Sqrt(2))
+		fmt.Println(Sqrt(-2))
+	}
+
 }
 
-//* --- Duck typing ---
 type Honda struct {
 	name      string
 	autodrive bool
@@ -898,11 +900,10 @@ func (h Honda) drive() bool {
 func (h Honda) fly() bool {
 	return true
 }
-// --- Duck typing --- **/
 
 func main() {
 
-	implicit_interface_test()
+	ducktyping_test()
 
 	if false {
 		pointer_game()
@@ -926,6 +927,23 @@ func main() {
 	}
 
 	if false {
+
+		Sqrt := func(x float64) float64 {
+			z := x
+			zz := float64(0)
+
+			for i := 0; i < 10; i++ {
+				zz = z - (z*z-x)/(2*z)
+				//		fmt.Printf("%d: %g\n", i, zz)
+				if zz == z {
+					break
+				} else {
+					z = zz
+				}
+			}
+			return z
+		}
+
 		e_max := 0.0
 		for i := 0; i < 0x1000; i++ {
 			x := float64(i)
