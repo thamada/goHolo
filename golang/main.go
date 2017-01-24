@@ -1,13 +1,13 @@
-//Time-stamp: <2017-01-24 10:34:15 hamada>
+//Time-stamp: <2017-01-24 11:00:35 hamada>
 package main
 
 import (
 	"fmt"
 	"math"
+	"reflect"
 	"runtime"
 	"strings"
 	"time"
-	"reflect"
 )
 
 // GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!GREAT!!
@@ -852,29 +852,59 @@ func implicit_interface_test() {
 		fmt.Println(b)
 	}
 
+	{
+		type Autonomous interface {
+			drive() bool
+		}
+
+		type Airplane interface {
+			fly() bool
+		}
+
+		car := Honda{"Nbox", false}
+		/*
+			fmt.Printf("(%v, %T): %v\n", car, car, car.drive())
+			fmt.Printf("(%v, %T): %v\n", car, car, car.fly())
+		*/
+		check_auto := func(c Autonomous) {
+			fmt.Printf("Autonomous: (%v, %T)\n", c, c)
+		}
+
+		/*
+		If Honda doesn't have fly() method, the following error happens:
+				  cannot use car (type Honda) as type Airplane in argument to check_plane:
+					Honda does not implement Airplane (missing fly method)
+		*/
+		check_plane := func(c Airplane) {
+			fmt.Printf("Airplane: (%v, %T)\n", c, c)
+		}
+
+		check_auto(car)
+		check_plane(car)
+	}
+
 }
 
-type Person struct {
-	Name string
-	Age  int
+//* --- Duck typing ---
+type Honda struct {
+	name      string
+	autodrive bool
 }
 
-func (p Person) String() string {
-	return fmt.Sprintf("%v (%v years)", p.Name, p.Age)
+func (h Honda) drive() bool {
+	return true
 }
 
-func Stringer_test() {
-	a := Person{"Arthur Dent", 42}
-	z := Person{"Zaphod Beeblebrox", 9001}
-	fmt.Println(a, z)
+func (h Honda) fly() bool {
+	return true
 }
+// --- Duck typing --- **/
 
 func main() {
 
-	Stringer_test()
+	implicit_interface_test()
 
 	if false {
-		implicit_interface_test()
 		pointer_game()
 		interface_test()
 		fb_test()
