@@ -1,13 +1,19 @@
-#Time-stamp: <2017-01-24 12:31:03 hamada>
+#Time-stamp: <2017-01-25 10:35:25 hamada>
 
-target = ./run.x
+target = ./bin/golang
 
 GOPATH := $(realpath .)
+GOBIN := $(realpath .)/bin
 export GOPATH
+export GOBIN
 
 default: build
 
+run:
+	${target}
+
 build: vet
+	go get
 	go build -o ${target} main.go 
 	${target}
 
@@ -29,11 +35,11 @@ lint:
 doc:
 	godoc -http=:8080 -index
 
-
-
 clean:
 	rm -rf *~ .*~ golang ${target} src/*~ 
 
 
 c: clean
+
+r: run
 

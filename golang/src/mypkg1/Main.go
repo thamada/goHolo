@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-24 12:31:28 hamada>
+//Time-stamp: <2017-01-25 10:21:15 hamada>
 package mypkg1
 
 import (
