@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-25 14:24:42 hamada>
+//Time-stamp: <2017-01-25 14:31:08 hamada>
 package main
 
 import (
@@ -7,15 +7,17 @@ import (
 	"mypkg1"
 	// qualified identifiers
 	//  see:  https://golang.org/ref/spec#Import_declarations
-	test "mypkg1/exer"
 	mpic "mypkg1/pic"
+	"mypkg1/exer"
+
 )
 
 func main() {
 
-	test.Maps()
+	exer.Stringer()
 
 	if false {
+		exer.Maps()
 		mpic.DEBUG = false
 		pic.Show(mpic.Pic)
 		mypkg1.Main()
