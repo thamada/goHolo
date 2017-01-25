@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-25 11:36:18 hamada>
+//Time-stamp: <2017-01-25 13:18:35 hamada>
 package main
 
 import (
@@ -10,6 +10,7 @@ import (
 
 func main() {
 
+	pic1.DEBUG = false
 	pic.Show(pic1.Pic)
 
 	if false {

@@ -1,9 +1,11 @@
-//Time-stamp: <2017-01-25 13:15:54 hamada>
+//Time-stamp: <2017-01-25 13:18:12 hamada>
 package pic1
 
 import (
 	"fmt"
 )
+
+var DEBUG bool = false
 
 func Pic(dx, dy int) [][]uint8 {
 
@@ -23,7 +25,7 @@ func Pic(dx, dy int) [][]uint8 {
 		p[iy] = pline
 	}
 
-	if false {
+	if DEBUG {
 		fmt.Printf("(%v, %T)\n", p, p)
 		fmt.Printf("(%v, %T)\n", dx, dx)
 		fmt.Printf("(%v, %T)\n", dy, dy)
