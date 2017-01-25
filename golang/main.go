@@ -1,10 +1,12 @@
-//Time-stamp: <2017-01-25 13:23:08 hamada>
+//Time-stamp: <2017-01-25 13:32:40 hamada>
 package main
 
 import (
 	"fmt"
 	"golang.org/x/tour/pic"
 	"mypkg1"
+	// qualified identifiers
+	//  see:  https://golang.org/ref/spec#Import_declarations
 	mpic "mypkg1/pic"
 )
 
