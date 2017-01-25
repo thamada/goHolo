@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-25 12:57:07 hamada>
+//Time-stamp: <2017-01-25 13:15:54 hamada>
 package pic1
 
 import (
@@ -15,13 +15,19 @@ func Pic(dx, dy int) [][]uint8 {
 	}
 
 	for iy := 0; iy < dy; iy++ {
-		for ix := 0; ix < ix; ix++ {
-//			p[ix][iy] = uint8(0xff & (ix + iy))
-			p[ix][iy] = uint8(177)
+		pline := make([]uint8, dx)
+		for ix := 0; ix < dx; ix++ {
+			v := uint8(0xff & ((ix ^ iy) | (ix - 1)))
+			pline[ix] = v
 		}
+		p[iy] = pline
 	}
 
-	fmt.Printf("(%v, %T)\n", p, p)
+	if false {
+		fmt.Printf("(%v, %T)\n", p, p)
+		fmt.Printf("(%v, %T)\n", dx, dx)
+		fmt.Printf("(%v, %T)\n", dy, dy)
+	}
 
 	return p
 }
