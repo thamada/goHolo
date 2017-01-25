@@ -1,5 +1,5 @@
-//Time-stamp: <2017-01-25 11:34:50 hamada>
-package pic
+//Time-stamp: <2017-01-25 11:36:07 hamada>
+package pic1
 
 import (
 	"golang.org/x/tour/pic"

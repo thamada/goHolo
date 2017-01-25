@@ -1,16 +1,16 @@
-//Time-stamp: <2017-01-25 11:35:23 hamada>
+//Time-stamp: <2017-01-25 11:36:18 hamada>
 package main
 
 import (
 	"fmt"
 	"golang.org/x/tour/pic"
 	"mypkg1"
-	"mypkg1/pic"
+	"mypkg1/pic1"
 )
 
 func main() {
 
-	pic.Show(pic.Pic)
+	pic.Show(pic1.Pic)
 
 	if false {
 		mypkg1.Main()
