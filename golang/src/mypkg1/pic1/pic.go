@@ -1,8 +1,8 @@
-//Time-stamp: <2017-01-25 11:36:07 hamada>
+//Time-stamp: <2017-01-25 12:57:07 hamada>
 package pic1
 
 import (
-	"golang.org/x/tour/pic"
+	"fmt"
 )
 
 func Pic(dx, dy int) [][]uint8 {
@@ -11,15 +11,17 @@ func Pic(dx, dy int) [][]uint8 {
 
 	for iy := 0; iy < dy; iy++ {
 		pline := make([]uint8, dx)
-		for ix := 0; ix < ix; ix++ {
-			pline[ix] = uint8(0xff & (ix+iy))
-		}
 		p = append(p, pline)
 	}
 
-	return p
-}
+	for iy := 0; iy < dy; iy++ {
+		for ix := 0; ix < ix; ix++ {
+//			p[ix][iy] = uint8(0xff & (ix + iy))
+			p[ix][iy] = uint8(177)
+		}
+	}
 
-func Pic_main() {
-	pic.Show(Pic)
+	fmt.Printf("(%v, %T)\n", p, p)
+
+	return p
 }
