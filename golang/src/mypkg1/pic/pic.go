@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-25 13:21:43 hamada>
+//Time-stamp: <2017-01-25 14:10:06 hamada>
 package pic
 
 import (

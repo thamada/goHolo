@@ -1,4 +1,4 @@
-#Time-stamp: <2017-01-25 11:21:02 hamada>
+#Time-stamp: <2017-01-25 14:24:37 hamada>
 
 target = ./bin/golang
 
@@ -22,7 +22,8 @@ vet:
 
 # https://golang.org/cmd/go/#hdr-Run_gofmt_on_package_sources
 fmt:
-	go fmt -x -n ./src/...
+	go fmt . ./src/...
+#	go fmt -x -n ./src/...
 
 gorun:
 	go run main.go 
