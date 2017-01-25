@@ -1,4 +1,4 @@
-#Time-stamp: <2017-01-25 10:31:00 hamada>
+#Time-stamp: <2017-01-25 11:20:42 hamada>
 
 *~
 .*~
@@ -6,3 +6,4 @@
 /run.x
 /tmp.go
 /golang
+/.DS_Store

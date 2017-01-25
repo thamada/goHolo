@@ -1,4 +1,4 @@
-#Time-stamp: <2017-01-25 10:35:25 hamada>
+#Time-stamp: <2017-01-25 11:21:02 hamada>
 
 target = ./bin/golang
 
@@ -36,7 +36,7 @@ doc:
 	godoc -http=:8080 -index
 
 clean:
-	rm -rf *~ .*~ golang ${target} src/*~ 
+	rm -rf *~ .*~ golang ${target} src/*~ .DS_Store
 
 
 c: clean
