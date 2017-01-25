@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-26 04:49:35 hamada>
+//Time-stamp: <2017-01-26 05:30:19 hamada>
 package main
 
 import (
@@ -10,9 +10,10 @@ import (
 
 func main() {
 
-	tut.Buffered_channels()
+	tut.Range_and_close()
 
 	if false {
+		tut.Buffered_channels()
 		tut.Channels()
 		tut.Goroutines()
 		exer.Images()

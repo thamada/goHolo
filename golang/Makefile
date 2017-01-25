@@ -1,4 +1,4 @@
-#Time-stamp: <2017-01-25 14:24:37 hamada>
+#Time-stamp: <2017-01-26 05:30:46 hamada>
 
 target = ./bin/golang
 
@@ -38,7 +38,7 @@ doc:
 
 clean:
 	rm -rf *~ .*~ golang ${target} src/*~ .DS_Store
-
+	rm -rf ./pkg/*
 
 c: clean
 
