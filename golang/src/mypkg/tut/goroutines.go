@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-26 03:50:51 hamada>
+//Time-stamp: <2017-01-26 03:53:45 hamada>
 package tut
 
 import (
@@ -24,11 +24,11 @@ func Goroutines() {
 
 	for i := 0; i < 100; i++ {
 		fmt.Println(fmt.Sprintf("--------: %v", i))
-		go say(fmt.Sprintf("%v: oops", i), 1, c)
-		go say(fmt.Sprintf("%v: ^_^;", i), 2, c)
-		go say5(fmt.Sprintf("%v: five!", i), 3, c)
+		go say(fmt.Sprintf("%v: 1.oops!!", i), 1, c)
+		go say(fmt.Sprintf("%v: 2.^_^;", i), 2, c)
+		go say5(fmt.Sprintf("%v: 3.five!", i), 3, c)
 		if true {
-			x, y, z := <-c, <-c, <-c
+			x, y, z := <-c, <-c, <-c // --- sync threads ---
 			fmt.Println(x, y, z)
 		}
 	}
