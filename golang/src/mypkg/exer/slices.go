@@ -1,12 +1,11 @@
-//Time-stamp: <2017-01-25 14:39:19 hamada>
+//Time-stamp: <2017-01-25 18:57:54 hamada>
 package exer
 
 import (
 	// qualified identifiers
 	//  see:  https://golang.org/ref/spec#Import_declarations
 	"fmt"
-	"golang.org/x/tour/pic"
-	mpic "mypkg1/pic"
+	gopic "golang.org/x/tour/pic"
 )
 
 var DEBUG bool = false
@@ -39,11 +38,6 @@ func Pic(dx, dy int) [][]uint8 {
 }
 
 func Slices() {
-	if false {
-		mpic.DEBUG = false
-		pic.Show(mpic.Pic)
-	} else {
-		DEBUG = false
-		pic.Show(Pic)
-	}
+	DEBUG = false
+	gopic.Show(Pic)
 }

@@ -1,5 +1,5 @@
-//Time-stamp: <2017-01-25 10:21:15 hamada>
-package mypkg1
+//Time-stamp: <2017-01-25 19:03:22 hamada>
+package etc
 
 import (
 	"fmt"
@@ -824,7 +824,6 @@ func ducktyping_test() {
 		do(21)
 		do("hello")
 		do(true)
-		do(Main)
 		do(do)
 		do(nil)
 	}
