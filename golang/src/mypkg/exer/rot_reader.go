@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-26 01:51:26 hamada>
+//Time-stamp: <2017-01-26 01:57:48 hamada>
 package exer
 
 import (
@@ -25,11 +25,11 @@ func nrot(c byte, n int) byte {
 	return crot
 }
 
-func (rd rot13Reader) Read(buf []byte) (n int, err error) {
+func (recv rot13Reader) Read(buf []byte) (n int, err error) {
 	var DEBUG bool = false // true //
 
 	buf0 := make([]byte, 10)
-	n, err = rd.r.Read(buf0)
+	n, err = recv.r.Read(buf0)
 
 	if DEBUG {
 		fmt.Printf("%v, %v\n", n, err)
@@ -48,7 +48,7 @@ func (rd rot13Reader) Read(buf []byte) (n int, err error) {
 	return
 }
 
-func do (msg string) {
+func do(msg string) {
 	s := strings.NewReader(msg)
 	r := rot13Reader{s}
 	io.Copy(os.Stdout, &r)
