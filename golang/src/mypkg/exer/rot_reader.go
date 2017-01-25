@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-26 01:13:12 hamada>
+//Time-stamp: <2017-01-26 01:42:18 hamada>
 package exer
 
 import (
@@ -12,28 +12,48 @@ type rot13Reader struct {
 	r io.Reader
 }
 
+func rot13(c byte) byte {
+	var crot byte
+	switch {
+	case ('A' <= c && c <= 'Z'):
+		crot = (c-'A'+13)%26 + 'A'
+	case ('a' <= c && c <= 'z'):
+		crot = (c-'a'+13)%26 + 'a'
+	default:
+		crot = c
+	}
+	return crot
+}
+
 func (rd rot13Reader) Read(buf []byte) (n int, err error) {
-	var DEBUG bool = true //false
+	var DEBUG bool = false // true //
 
 	buf0 := make([]byte, 10)
 	n, err = rd.r.Read(buf0)
+
 	if DEBUG {
 		fmt.Printf("%v, %v\n", n, err)
 		fmt.Printf("%v\n", buf0)
 	}
-	for i := 0; i < n; i++ {
-		buf[i] = (((buf0[i] - 97) + 13) % 26) + 97
+
+	if err != nil {
+		return 0, err
 	}
+
+	for i := range buf0 {
+		b := rot13(buf0[i])
+		buf[i] = b
+	}
+
 	return
 }
 
 func Rot_reader() {
 
-	if true {
-//		s := strings.NewReader("Lbh penpxrq gur pbqr!")
-//		s := strings.NewReader("a b c d e f g")
-		s := strings.NewReader("Lbhpenpxrqgurpbqr!")
-		r := rot13Reader{s}
-		io.Copy(os.Stdout, &r)
-	}
+	//		s := strings.NewReader("Lbh penpxrq gur pbqr!")
+	s := strings.NewReader("Neg jnfurf njnl sebz gur fbhy gur qhfg bs rirelqnl yvsr. -- Cnoyb Cvpnffb")
+	r := rot13Reader{s}
+	io.Copy(os.Stdout, &r)
+	fmt.Printf("\n")
+
 }
