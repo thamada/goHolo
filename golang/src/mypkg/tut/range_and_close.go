@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-26 05:55:15 hamada>
+//Time-stamp: <2017-01-26 05:56:03 hamada>
 package tut
 
 import (
@@ -7,7 +7,8 @@ import (
 
 func fibonacci(n int, c chan int) {
 	x, y := 0, 1
-	for i := 0; i < n*5; i++ {
+	ni := n * 5
+	for i := 0; i < ni; i++ {
 		c <- x
 		x, y = y, x+y
 	}
