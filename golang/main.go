@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-25 14:36:33 hamada>
+//Time-stamp: <2017-01-25 14:43:07 hamada>
 package main
 
 import (
@@ -9,9 +9,10 @@ import (
 
 func main() {
 
-	exer.Slices()
+	exer.Fibonacci_closure()
 
 	if false {
+		exer.Slices()
 		exer.Stringer()
 		exer.Maps()
 		mypkg1.Main()

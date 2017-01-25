@@ -4,9 +4,9 @@ package exer
 import (
 	// qualified identifiers
 	//  see:  https://golang.org/ref/spec#Import_declarations
-	mpic "mypkg1/pic"
 	"fmt"
 	"golang.org/x/tour/pic"
+	mpic "mypkg1/pic"
 )
 
 var DEBUG bool = false
@@ -42,7 +42,7 @@ func Slices() {
 	if false {
 		mpic.DEBUG = false
 		pic.Show(mpic.Pic)
-	}else{
+	} else {
 		DEBUG = false
 		pic.Show(Pic)
 	}
