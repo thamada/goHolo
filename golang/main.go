@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-26 02:16:44 hamada>
+//Time-stamp: <2017-01-26 03:08:59 hamada>
 package main
 
 import (
@@ -10,9 +10,10 @@ import (
 
 func main() {
 
-	exer.Images()
+	tut.Goroutines()
 
 	if false {
+		exer.Images()
 		tut.Images()
 		exer.Rot_reader()
 		exer.Reader()
