@@ -1,17 +1,21 @@
-//Time-stamp: <2017-01-25 19:04:15 hamada>
+//Time-stamp: <2017-01-26 00:25:37 hamada>
 package main
 
 import (
 	"fmt"
 	"mypkg/etc"
 	"mypkg/exer"
+	"mypkg/tut"
 )
 
 func main() {
 
 
+	exer.Rot_reader()
+
 	if false {
 		exer.Reader()
+		tut.Reader()
 		exer.Errors()
 		exer.Fibonacci_closure()
 		exer.Slices()

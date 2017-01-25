@@ -1,22 +1,19 @@
-//Time-stamp: <2017-01-25 18:53:04 hamada>
+//Time-stamp: <2017-01-25 19:21:01 hamada>
 package exer
 
 import (
-	"fmt"
-	"io"
-	"strings"
+	"golang.org/x/tour/reader"
 )
 
-func Reader() {
-	r := strings.NewReader("Hello, Reader!")
+type MyReader struct{}
 
-	b := make([]byte, 8)
-	for {
-		n, err := r.Read(b)
-		fmt.Printf("n = %v err = %v b = %v\n", n, err, b)
-		fmt.Printf("b[:n] = %q\n", b[:n])
-		if err == io.EOF {
-			break
-		}
-	}
+func (r MyReader) Read(b []byte) (n int, err error) {
+	n = int(1)
+	b[0] = 'A'
+	err = nil
+	return n, err
+}
+
+func Reader() {
+	reader.Validate(MyReader{})
 }
