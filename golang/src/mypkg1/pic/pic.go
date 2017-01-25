@@ -1,5 +1,5 @@
-//Time-stamp: <2017-01-25 13:18:12 hamada>
-package pic1
+//Time-stamp: <2017-01-25 13:21:43 hamada>
+package pic
 
 import (
 	"fmt"
