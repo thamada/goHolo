@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-25 17:48:09 hamada>
+//Time-stamp: <2017-01-25 17:59:27 hamada>
 package exer
 
 import (
