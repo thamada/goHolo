@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-27 02:02:09 hamada>
+//Time-stamp: <2017-01-27 02:31:19 hamada>
 package exer
 
 import (
@@ -30,12 +30,31 @@ func Walk(t *tree.Tree, ch chan int) {
 // Same determines whether the trees
 // t1 and t2 contain the same values.
 func Same(t1, t2 *tree.Tree) bool {
+	c1 := make(chan int)
+	c2 := make(chan int)
+
+	go Walk(t1, c1)
+	go Walk(t2, c2)
+	
+	for {
+		n1, ok1 := <-c1
+		n2, ok2 := <-c2
+
+		fmt.Printf("%v, %v\n", n1, n2)
+		if n1 != n2 || ok1 != ok2 {
+			return false
+		}
+
+		if !ok1 {
+			break
+		}
+	}
 	return true
 }
 
 func Equivalent_binary_trees() {
 
-	if true {
+	if false {
 		t := tree.New(2)
 		fmt.Printf("%v, %T\n", t, t)
 		c := make(chan int)
@@ -49,7 +68,7 @@ func Equivalent_binary_trees() {
 		}
 	}
 
-	if false {
+	if true {
 		for i := 0; i < 10; i++ {
 			ta := tree.New(i)
 			tb := tree.New(i)
