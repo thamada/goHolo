@@ -1,8 +1,9 @@
-//Time-stamp: <2017-01-27 02:31:19 hamada>
+//Time-stamp: <2017-01-27 03:01:16 hamada>
 package exer
 
 import (
 	"fmt"
+	"github.com/Sirupsen/logrus"
 	"golang.org/x/tour/tree"
 )
 
@@ -35,7 +36,7 @@ func Same(t1, t2 *tree.Tree) bool {
 
 	go Walk(t1, c1)
 	go Walk(t2, c2)
-	
+
 	for {
 		n1, ok1 := <-c1
 		n2, ok2 := <-c2
@@ -49,10 +50,20 @@ func Same(t1, t2 *tree.Tree) bool {
 			break
 		}
 	}
+	fmt.Printf("%v, %T\n", logger, logger)
 	return true
 }
 
+var logger *logrus.Logger = logrus.New()
+
 func Equivalent_binary_trees() {
+	
+	//	logger.Formatter = new(logrus.JSONFormatter)
+
+	logger.WithFields(logrus.Fields{
+		"comment": "this is a test",
+		"pi": 3.141592,
+	}).Info("INFO")
 
 	if false {
 		t := tree.New(2)
@@ -69,9 +80,9 @@ func Equivalent_binary_trees() {
 	}
 
 	if true {
-		for i := 0; i < 10; i++ {
-			ta := tree.New(i)
-			tb := tree.New(i)
+		for i := 0; i < 1; i++ {
+			ta := tree.New(i + 1)
+			tb := tree.New(i + 1)
 			fmt.Printf("%v, %T\n", ta, ta)
 			fmt.Printf("%v, %T\n", tb, tb)
 			is_same := Same(ta, tb)
