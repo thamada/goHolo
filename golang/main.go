@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-26 05:57:52 hamada>
+//Time-stamp: <2017-01-27 00:33:37 hamada>
 package main
 
 import (
@@ -10,9 +10,10 @@ import (
 
 func main() {
 
-	tut.Select()
+	tut.Default_selection()
 
 	if false {
+		tut.Select()
 		tut.Range_and_close()
 		tut.Buffered_channels()
 		tut.Channels()
