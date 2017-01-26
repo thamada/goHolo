@@ -1,18 +1,20 @@
-//Time-stamp: <2017-01-27 03:31:42 hamada>
+//Time-stamp: <2017-01-27 03:37:13 hamada>
 package tut
 
 import (
 	"fmt"
 )
 
-
 func Defer() {
 	var func_a func (x int) string
 	var func_b func (s string) string 
 
 	func_a = func (x int) string {
-		s := fmt.Sprintf("hello %v", x)
-		defer fmt.Println("sub_a: Defer!")
+		var s string
+		for i :=0; i<10; i++ { 
+			s = fmt.Sprintf("msg %v", x+i)
+			defer fmt.Println("sub_a: Defer: ", s)
+		}
 		return func_b(s)
 	}
 
@@ -21,7 +23,7 @@ func Defer() {
 		return s
 	}
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 2; i++ {
 		fmt.Println("main:", func_a(i))
 		fmt.Println()
 	}
