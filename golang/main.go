@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-27 00:33:37 hamada>
+//Time-stamp: <2017-01-27 01:21:26 hamada>
 package main
 
 import (
@@ -10,9 +10,10 @@ import (
 
 func main() {
 
-	tut.Default_selection()
+	exer.Equivalent_binary_trees()
 
 	if false {
+		tut.Default_selection()
 		tut.Select()
 		tut.Range_and_close()
 		tut.Buffered_channels()

@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-27 00:46:12 hamada>
+//Time-stamp: <2017-01-27 01:14:38 hamada>
 package tut
 
 import (
@@ -33,7 +33,7 @@ func Default_selection() {
 	for {
 		select {
 		case <-tick:
-			fmt.Printf("%v, %T: ", tick, tick)
+			fmt.Printf("%v, %T: ", <-tick, <-tick)
 			fmt.Println("tick.")
 		case <-boom:
 			fmt.Println("BOOM!")
