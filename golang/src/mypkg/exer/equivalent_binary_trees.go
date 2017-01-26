@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-27 03:01:16 hamada>
+//Time-stamp: <2017-01-27 03:06:39 hamada>
 package exer
 
 import (
@@ -56,18 +56,20 @@ func Same(t1, t2 *tree.Tree) bool {
 
 var logger *logrus.Logger = logrus.New()
 
-func Equivalent_binary_trees() {
-	
-	//	logger.Formatter = new(logrus.JSONFormatter)
-
+func logger_test(msg string) {
 	logger.WithFields(logrus.Fields{
-		"comment": "this is a test",
-		"pi": 3.141592,
+		"comment": msg,
+		"pi":      3.141592653,
 	}).Info("INFO")
+}
+
+func Equivalent_binary_trees() {
+
+	logger.Formatter = new(logrus.JSONFormatter)
 
 	if false {
 		t := tree.New(2)
-		fmt.Printf("%v, %T\n", t, t)
+		logger_test(fmt.Sprintf("%v, %T\n", t, t))
 		c := make(chan int)
 		go Walk(t, c)
 		for {
@@ -83,10 +85,10 @@ func Equivalent_binary_trees() {
 		for i := 0; i < 1; i++ {
 			ta := tree.New(i + 1)
 			tb := tree.New(i + 1)
-			fmt.Printf("%v, %T\n", ta, ta)
-			fmt.Printf("%v, %T\n", tb, tb)
+			logger_test(fmt.Sprintf("%v, %T\n", ta, ta))
+			logger_test(fmt.Sprintf("%v, %T\n", tb, tb))
 			is_same := Same(ta, tb)
-			fmt.Printf("%v\n\n", is_same)
+			logger_test(fmt.Sprintf("%v\n\n", is_same))
 		}
 	}
 	fmt.Println("end.")
