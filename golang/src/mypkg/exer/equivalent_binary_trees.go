@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-27 03:06:39 hamada>
+//Time-stamp: <2017-01-27 03:10:32 hamada>
 package exer
 
 import (
@@ -18,6 +18,7 @@ func Walk(t *tree.Tree, ch chan int) {
 			dwarf(t.Right)
 		}
 		ch <- t.Value
+		fmt.Printf("ch <-t.Value: %v\n", t.Value)
 		if t.Left != nil {
 			dwarf(t.Left)
 		}
@@ -67,21 +68,23 @@ func Equivalent_binary_trees() {
 
 	logger.Formatter = new(logrus.JSONFormatter)
 
-	if false {
-		t := tree.New(2)
-		logger_test(fmt.Sprintf("%v, %T\n", t, t))
-		c := make(chan int)
-		go Walk(t, c)
-		for {
-			n, ok := <-c
-			fmt.Printf("%v\n", n)
-			if !ok {
-				break
+	if true {
+		for i := 0; i < 2; i++ {
+			t := tree.New(i+1)
+			logger_test(fmt.Sprintf("%v, %T\n", t, t))
+			c := make(chan int)
+			go Walk(t, c)
+			for {
+				n, ok := <-c
+				fmt.Printf("%v\n", n)
+				if !ok {
+					break
+				}
 			}
 		}
 	}
 
-	if true {
+	if false {
 		for i := 0; i < 1; i++ {
 			ta := tree.New(i + 1)
 			tb := tree.New(i + 1)
