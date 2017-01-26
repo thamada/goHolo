@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-26 06:04:38 hamada>
+//Time-stamp: <2017-01-27 00:07:18 hamada>
 package tut
 
 import (
@@ -29,13 +29,12 @@ func Select() {
 	c := make(chan int)
 	quit := make(chan int)
 	if true {
-		fn := func() {
+		go func() {
 			for i := 0; i < 10; i++ {
-				fmt.Println(<-c)
+				fmt.Println(i, <-c)
 			}
 			quit <- 0
-		}
-		go fn()
+		}()
 	} else {
 		go print(c, quit)
 	}
