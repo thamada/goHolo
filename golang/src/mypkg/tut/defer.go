@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-27 03:37:13 hamada>
+//Time-stamp: <2017-01-27 03:41:10 hamada>
 package tut
 
 import (
@@ -11,10 +11,12 @@ func Defer() {
 
 	func_a = func (x int) string {
 		var s string
+		defer fmt.Println("sub_a: Defer: the first")
 		for i :=0; i<10; i++ { 
 			s = fmt.Sprintf("msg %v", x+i)
 			defer fmt.Println("sub_a: Defer: ", s)
 		}
+		defer fmt.Println("sub_a: Defer: the last")
 		return func_b(s)
 	}
 
