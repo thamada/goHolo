@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-28 00:57:17 hamada>
+//Time-stamp: <2017-01-28 01:01:42 hamada>
 package tut
 
 import (
@@ -18,7 +18,7 @@ func (c *SafeCounter) Write(key string, i int) {
 	c.v[key]++
 	fmt.Printf("%03d: incr: %v\n", i, c.v[key])
 	c.seq = append(c.seq, i)
-	if true {
+	if false {
 		defer c.mux.Unlock()
 	} else {
 		c.mux.Unlock()
@@ -39,19 +39,23 @@ func Mutex_counter() {
 
 	tid := int(0)
 	for i := 0; i < 100; i++ {
-		tid++
 		go c.Write("mutex", tid)
 		tid++
+
 		go c.Write("mutex", tid)
+		tid++
+
 		go c.Read("mutex", i+900)
-		tid++
+
 		go c.Write("mutex", tid)
 		tid++
+
 		go c.Write("mutex", tid)
+		tid++
 	}
 
 	fmt.Println(c.Read("mutex", -1))
-	time.Sleep(10 * time.Second)
+	time.Sleep(2 * time.Second)
 	fmt.Println(c.Read("mutex", -2))
 	fmt.Printf("seq: %v\n", c.seq)
 }
