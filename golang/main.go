@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-28 01:14:11 hamada>
+//Time-stamp: <2017-01-28 03:16:17 hamada>
 package main
 
 import (
@@ -10,9 +10,10 @@ import (
 
 func main() {
 
-	exer.Web()
+	tut.Numeric_constants()
 
 	if false {
+		exer.Web()
 		tut.Mutex_counter()
 		tut.Defer()
 		exer.Equivalent_binary_trees()
