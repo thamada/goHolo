@@ -1,9 +1,10 @@
-//Time-stamp: <2017-01-28 04:24:14 hamada>
+//Time-stamp: <2017-01-28 04:31:00 hamada>
 package work
 
-import "fmt"
-
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 const PARALLEL = true
 
@@ -14,20 +15,22 @@ func Timer() {
 	for i := 0; i < ni; i++ {
 		t := 200 * time.Millisecond
 
-		fn := func(id int, d time.Duration, ch chan int) {
+		calc := func(id int, d time.Duration, ch chan int) {
 			time.Sleep(d)
-			if false {
-				ch <- i
+			if true {
+				ch <- i  // be carefull ;-)
 			}else{
 				ch <- id
 			}
 		}
 
 		if PARALLEL {
-			go fn(i, t, c)
+			go calc(i, t, c)
 		} else {
-			fn(i, t, c)
+			calc(i, t, c)
 		}
+
+		time.Sleep(t/40)
 
 		fmt.Printf("done %v\n", i)
 	}
