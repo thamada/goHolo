@@ -1,14 +1,9 @@
-//Time-stamp: <2017-01-28 04:20:26 hamada>
+//Time-stamp: <2017-01-28 04:20:44 hamada>
 package work
 
 import "fmt"
 
 import "time"
-
-func timer(id int, d time.Duration, ch chan int) {
-	time.Sleep(d)
-	ch <- id
-}
 
 func Timer() {
 	ni := 100
