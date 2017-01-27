@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-28 01:39:24 hamada>
+//Time-stamp: <2017-01-28 02:11:53 hamada>
 package exer
 
 import (
@@ -13,42 +13,92 @@ type Fetcher interface {
 
 // Crawl uses fetcher to recursively crawl
 // pages starting with url, to a maximum of depth.
-func Crawl(url string, depth int, fetcher Fetcher) {
+func Crawl(url string, depth int, fetcher Fetcher, ch chan CrawlResult) {
 	// TODO: Fetch URLs in parallel.
 	// TODO: Don't fetch the same URL twice.
-	// This implementation doesn't do either:
 	if depth <= 0 {
+		ch <- CrawlResult{}
 		return
 	}
 	body, urls, err := fetcher.Fetch(url)
 	if err != nil {
-		fmt.Println(err)
+		ch <- CrawlResult{Err: err}
 		return
 	}
 	fmt.Printf("found: %s %q\n", url, body)
-	for _, u := range urls {
-		Crawl(u, depth-1, fetcher)
-	}
+	ch <- CrawlResult{URLs: urls, Crawled: url, Depth: depth}
 	return
 }
 
-func Web() {
-//	Crawl("http://golang.org/", 4, fetcher)
-	fmt.Printf("v:\t %v\n", fetcher)
-	fmt.Printf("T:\t %T\n", fetcher)
-
-	check := func (url string) {
-		fmt.Printf("v:\t %v\n", fetcher[url])
-		fmt.Printf("T:\t %T\n", fetcher[url])
-	}
-
-	check("http://golang.org/")
-	check("http://golang.org/pkg/")
-	check("http://golang.org/pkg/fmt/")
-	check("http://golang.org/pkg/os/")
+type NextCrawl struct {
+	URL   string
+	Depth int
 }
 
-// fakeFetcher is Fetcher that returns canned results.
+type CrawlResult struct {
+	URLs    []string
+	Crawled string
+	Depth   int
+	Err     error
+}
+
+func runCrawl() {
+	ch := make(chan CrawlResult)
+	nexts := []NextCrawl{NextCrawl{"http://golang.org/", 4}}
+	crawleds := make(map[string]int)
+
+	for len(nexts) > 0 {
+		goroutines := 0
+		for _, n := range nexts {
+			if crawleds[n.URL] > 0 {
+				continue
+			}
+
+			go Crawl(n.URL, n.Depth, fetcher, ch)
+			goroutines++
+			fmt.Printf("goroutine %d start\n", goroutines)
+		}
+
+		nexts = make([]NextCrawl, 0)
+		for i := 0; i < goroutines; i++ {
+			ret := <-ch
+			if ret.Err != nil {
+				fmt.Println(ret.Err)
+			}
+			if ret.Crawled == "" {
+				continue
+			}
+
+			crawleds[ret.Crawled]++
+			for _, url := range ret.URLs {
+				nexts = append(nexts, NextCrawl{url, ret.Depth - 1})
+			}
+		}
+	}
+}
+
+func Web() {
+
+	if true {
+		runCrawl() // ("http://golang.org/", 4, fetcher)
+	}
+
+	if false {
+		fmt.Printf("v:\t %v\n", fetcher)
+		fmt.Printf("T:\t %T\n", fetcher)
+
+		check := func(url string) {
+			fmt.Printf("v:\t %v\n", fetcher[url])
+			fmt.Printf("T:\t %T\n", fetcher[url])
+		}
+
+		check("http://golang.org/")
+		check("http://golang.org/pkg/")
+		check("http://golang.org/pkg/fmt/")
+		check("http://golang.org/pkg/os/")
+	}
+}
+
 type fakeFetcher map[string]*fakeResult
 
 type fakeResult struct {
