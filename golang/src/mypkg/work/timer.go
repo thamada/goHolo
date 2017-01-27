@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-28 04:20:44 hamada>
+//Time-stamp: <2017-01-28 04:21:58 hamada>
 package work
 
 import "fmt"
@@ -12,10 +12,16 @@ func Timer() {
 	for i := 0; i < ni; i++ {
 		t := 2000 * time.Millisecond
 
-		go func(id int, d time.Duration, ch chan int) {
+		fn := func(id int, d time.Duration, ch chan int) {
 			time.Sleep(d)
-			ch <- id
-		}(i, t, c)
+			if false {
+				ch <- i
+			}else{
+				ch <- id
+			}
+		}
+
+		go fn(i, t, c)
 
 		fmt.Printf("done %v\n", i)
 	}
