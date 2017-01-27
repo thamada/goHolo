@@ -1,25 +1,29 @@
-//Time-stamp: <2017-01-28 04:31:00 hamada>
+//Time-stamp: <2017-01-28 04:44:05 hamada>
 package work
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
 const PARALLEL = true
+const INSERT_BUG = false
 
 func Timer() {
+	t := 200
 	ni := 100
 	c := make(chan int, ni)
 
 	for i := 0; i < ni; i++ {
-		t := 200 * time.Millisecond
 
-		calc := func(id int, d time.Duration, ch chan int) {
+		calc := func(id int, t int, ch chan int) {
+			td := time.Duration(rand.Intn(t))
+			d := time.Millisecond * td // Time.Duration
 			time.Sleep(d)
-			if true {
-				ch <- i  // be carefull ;-)
-			}else{
+			if INSERT_BUG {
+				ch <- i // be carefull ;-)
+			} else {
 				ch <- id
 			}
 		}
@@ -30,7 +34,7 @@ func Timer() {
 			calc(i, t, c)
 		}
 
-		time.Sleep(t/40)
+		time.Sleep(time.Duration(t/100) * time.Millisecond)
 
 		fmt.Printf("done %v\n", i)
 	}
