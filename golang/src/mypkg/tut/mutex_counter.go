@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-28 00:36:19 hamada>
+//Time-stamp: <2017-01-28 00:57:17 hamada>
 package tut
 
 import (
@@ -16,14 +16,19 @@ type SafeCounter struct {
 func (c *SafeCounter) Write(key string, i int) {
 	c.mux.Lock()
 	c.v[key]++
-	fmt.Println(i, ": incr: ", c.v[key])
+	fmt.Printf("%03d: incr: %v\n", i, c.v[key])
 	c.seq = append(c.seq, i)
-	defer c.mux.Unlock()
+	if true {
+		defer c.mux.Unlock()
+	} else {
+		c.mux.Unlock()
+	}
+	time.Sleep(100 * time.Millisecond)
 }
 
 func (c *SafeCounter) Read(key string, i int) int {
 	c.mux.Lock()
-	fmt.Println(i, ": read: ", c.v[key])
+	fmt.Printf("%03d: read: %v\n", i, c.v[key])
 	defer c.mux.Unlock()
 	return c.v[key]
 }
@@ -32,17 +37,21 @@ func Mutex_counter() {
 	c := SafeCounter{v: make(map[string]int)}
 	c.seq = make([]int, 0)
 
-	for i := 0; i < 10; i++ {
-		go c.Write("mutex", i+0)
-		go c.Write("mutex", i+100)
-		go c.Read("mutex", i)
-		go c.Write("mutex", i+200)
-		go c.Write("mutex", i+300)
+	tid := int(0)
+	for i := 0; i < 100; i++ {
+		tid++
+		go c.Write("mutex", tid)
+		tid++
+		go c.Write("mutex", tid)
+		go c.Read("mutex", i+900)
+		tid++
+		go c.Write("mutex", tid)
+		tid++
+		go c.Write("mutex", tid)
 	}
 
 	fmt.Println(c.Read("mutex", -1))
-	time.Sleep(time.Second)
+	time.Sleep(10 * time.Second)
 	fmt.Println(c.Read("mutex", -2))
 	fmt.Printf("seq: %v\n", c.seq)
 }
-
