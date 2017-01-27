@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-28 03:16:17 hamada>
+//Time-stamp: <2017-01-28 03:59:56 hamada>
 package main
 
 import (
@@ -6,13 +6,15 @@ import (
 	"mypkg/etc"
 	"mypkg/exer"
 	"mypkg/tut"
+	"mypkg/work"
 )
 
 func main() {
 
-	tut.Numeric_constants()
+	work.Timer()
 
 	if false {
+		tut.Numeric_constants()
 		exer.Web()
 		tut.Mutex_counter()
 		tut.Defer()
