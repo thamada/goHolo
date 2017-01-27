@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-28 04:14:09 hamada>
+//Time-stamp: <2017-01-28 04:15:38 hamada>
 package work
 
 import "fmt"
@@ -15,13 +15,14 @@ func Timer() {
 	c := make(chan int, ni)
 
 	for i := 0; i < ni; i++ {
-		t := 5000 * time.Millisecond
+		t := 2000 * time.Millisecond
 		go timer(i, t, c)
 		fmt.Printf("done %v\n", i)
 	}
+	fmt.Printf("done for\n")
 
 	for i := 0; i < ni; i++ {
-		fmt.Printf("%v\n", <-c)
+		fmt.Printf("%v, ", <-c)
 	}
 
 }
