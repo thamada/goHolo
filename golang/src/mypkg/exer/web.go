@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-28 02:11:53 hamada>
+//Time-stamp: <2017-01-28 03:09:54 hamada>
 package exer
 
 import (
@@ -11,94 +11,66 @@ type Fetcher interface {
 	Fetch(url string) (body string, urls []string, err error)
 }
 
+type result struct {
+	url, body string
+	urls      []string
+	err       error
+	depth     int
+}
+
 // Crawl uses fetcher to recursively crawl
 // pages starting with url, to a maximum of depth.
-func Crawl(url string, depth int, fetcher Fetcher, ch chan CrawlResult) {
-	// TODO: Fetch URLs in parallel.
-	// TODO: Don't fetch the same URL twice.
-	if depth <= 0 {
-		ch <- CrawlResult{}
-		return
+func Crawl(url string, depth int, fetcher Fetcher) {
+	results := make(chan *result)
+	fetched := make(map[string]bool)
+	fetch := func(url string, depth int) {
+		body, urls, err := fetcher.Fetch(url)
+		results <- &result{
+			url: url,
+			body: body,
+			urls: urls,
+			err: err,
+			depth: depth}
+		defer fmt.Printf("## fetch end: %v\n", url)
 	}
-	body, urls, err := fetcher.Fetch(url)
-	if err != nil {
-		ch <- CrawlResult{Err: err}
-		return
-	}
-	fmt.Printf("found: %s %q\n", url, body)
-	ch <- CrawlResult{URLs: urls, Crawled: url, Depth: depth}
-	return
-}
 
-type NextCrawl struct {
-	URL   string
-	Depth int
-}
+	go fetch(url, depth)
+	fetched[url] = true
 
-type CrawlResult struct {
-	URLs    []string
-	Crawled string
-	Depth   int
-	Err     error
-}
+	// 1 url is currently being fetched in background,
+	// loop while fetching
+	for fetching := 1; fetching > 0; fetching-- {
+		res := <-results
 
-func runCrawl() {
-	ch := make(chan CrawlResult)
-	nexts := []NextCrawl{NextCrawl{"http://golang.org/", 4}}
-	crawleds := make(map[string]int)
-
-	for len(nexts) > 0 {
-		goroutines := 0
-		for _, n := range nexts {
-			if crawleds[n.URL] > 0 {
-				continue
-			}
-
-			go Crawl(n.URL, n.Depth, fetcher, ch)
-			goroutines++
-			fmt.Printf("goroutine %d start\n", goroutines)
+		// skip failed fetches
+		if res.err != nil {
+			fmt.Println(res.err)
+			continue
 		}
 
-		nexts = make([]NextCrawl, 0)
-		for i := 0; i < goroutines; i++ {
-			ret := <-ch
-			if ret.Err != nil {
-				fmt.Println(ret.Err)
-			}
-			if ret.Crawled == "" {
-				continue
-			}
+		fmt.Printf("found: %s %q\n", res.url, res.body)
 
-			crawleds[ret.Crawled]++
-			for _, url := range ret.URLs {
-				nexts = append(nexts, NextCrawl{url, ret.Depth - 1})
+		// follow links if depth has not been exhausted
+		if res.depth > 0 {
+			for _, u := range res.urls {
+				// don't attempt to re-fetch known url, decrement depth
+				if !fetched[u] {
+					fetching++
+					go fetch(u, res.depth-1)
+					fetched[u] = true
+				}
 			}
 		}
 	}
+
+	close(results)
 }
 
 func Web() {
-
-	if true {
-		runCrawl() // ("http://golang.org/", 4, fetcher)
-	}
-
-	if false {
-		fmt.Printf("v:\t %v\n", fetcher)
-		fmt.Printf("T:\t %T\n", fetcher)
-
-		check := func(url string) {
-			fmt.Printf("v:\t %v\n", fetcher[url])
-			fmt.Printf("T:\t %T\n", fetcher[url])
-		}
-
-		check("http://golang.org/")
-		check("http://golang.org/pkg/")
-		check("http://golang.org/pkg/fmt/")
-		check("http://golang.org/pkg/os/")
-	}
+	Crawl("http://golang.org/", 4, fetcher)
 }
 
+// fakeFetcher is Fetcher that returns canned results.
 type fakeFetcher map[string]*fakeResult
 
 type fakeResult struct {
@@ -106,15 +78,15 @@ type fakeResult struct {
 	urls []string
 }
 
-func (f fakeFetcher) Fetch(url string) (string, []string, error) {
-	if res, ok := f[url]; ok {
+func (f *fakeFetcher) Fetch(url string) (string, []string, error) {
+	if res, ok := (*f)[url]; ok {
 		return res.body, res.urls, nil
 	}
 	return "", nil, fmt.Errorf("not found: %s", url)
 }
 
 // fetcher is a populated fakeFetcher.
-var fetcher = fakeFetcher{
+var fetcher = &fakeFetcher{
 	"http://golang.org/": &fakeResult{
 		"The Go Programming Language",
 		[]string{
