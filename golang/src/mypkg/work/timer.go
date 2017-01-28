@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-29 00:50:58 hamada>
+//Time-stamp: <2017-01-29 01:03:23 hamada>
 package work
 
 import (
@@ -9,10 +9,10 @@ import (
 )
 
 const PARALLEL = true
-const INSERT_BUG = true
+const INSERT_BUG = false //true
 
 func Timer() {
-	t := 3000
+	t := 2000
 	ni := 100
 	c := make(chan int, ni)
 
@@ -52,8 +52,17 @@ func Timer() {
 	fmt.Printf("done for\n")
 
 	for i := 0; i < ni; i++ {
-		fmt.Println(runtime.NumGoroutine(), <-c)
+		fmt.Printf("%v: %v\n", runtime.NumGoroutine(), <-c)
+		outStackProf()
 	}
 
 	fmt.Println("")
+}
+
+func outStackProf() {
+	buf := make([]byte, 1<<20)
+	buf = buf[:runtime.Stack(buf, true)]
+	fmt.Println("-------------")
+	fmt.Println(string(buf))
+	fmt.Println("-------------")
 }
