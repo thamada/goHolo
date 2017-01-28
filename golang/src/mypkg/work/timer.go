@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-28 04:44:05 hamada>
+//Time-stamp: <2017-01-29 00:01:04 hamada>
 package work
 
 import (
@@ -44,4 +44,5 @@ func Timer() {
 		fmt.Printf("%v, ", <-c)
 	}
 
+	fmt.Println("")
 }
