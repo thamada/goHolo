@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-29 01:57:15 hamada>
+//Time-stamp: <2017-01-29 02:32:04 hamada>
 package main
 
 import (
@@ -11,9 +11,10 @@ import (
 
 func main() {
 
-	work.Race_conditions()
+	work.String2buf()
 
 	if false {
+		work.Race_conditions()
 		work.Timer()
 		tut.Numeric_constants()
 		exer.Web()

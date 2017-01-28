@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-29 02:10:25 hamada>
+//Time-stamp: <2017-01-29 02:20:04 hamada>
 package work
 
 import (
@@ -15,8 +15,11 @@ func Race_conditions() {
 		calc := func(id int) {
 			ii := i // i is on shared memory
 			time.Sleep(100*time.Nanosecond)
+			var s = fmt.Sprintf("%v%v", id, i)
 			if ii != i {
 				fmt.Printf("id=%v, i=%v\n", id, i)
+				fmt.Println(s)
+				fmt.Println([]byte(s))
 			}
 		}
 
