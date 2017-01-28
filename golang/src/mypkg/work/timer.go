@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-29 00:01:04 hamada>
+//Time-stamp: <2017-01-29 00:07:36 hamada>
 package work
 
 import (
@@ -8,10 +8,10 @@ import (
 )
 
 const PARALLEL = true
-const INSERT_BUG = false
+const INSERT_BUG = true
 
 func Timer() {
-	t := 200
+	t := 3000
 	ni := 100
 	c := make(chan int, ni)
 
@@ -22,7 +22,8 @@ func Timer() {
 			d := time.Millisecond * td // Time.Duration
 			time.Sleep(d)
 			if INSERT_BUG {
-				ch <- i // be carefull ;-)
+				// Be carefull ;-)
+				ch <- i // 'i' lives after this loop ends
 			} else {
 				ch <- id
 			}
@@ -34,7 +35,7 @@ func Timer() {
 			calc(i, t, c)
 		}
 
-		time.Sleep(time.Duration(t/100) * time.Millisecond)
+		time.Sleep(10 * time.Millisecond)
 
 		fmt.Printf("done %v\n", i)
 	}
