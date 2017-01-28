@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-29 00:37:09 hamada>
+//Time-stamp: <2017-01-29 00:44:34 hamada>
 package work
 
 import (
@@ -22,7 +22,7 @@ func Timer() {
 			{
 				// (pc uintptr, file string, line int, ok bool)
 				pc, file, line, ok := runtime.Caller(0)
-				v := runtime.GOMAXPROCS(4)
+				v := runtime.GOROOT()
 				fmt.Println(id, pc, file, line, ok, v)
 			}
 			// d Time.Duration
@@ -34,6 +34,7 @@ func Timer() {
 			} else {
 				ch <- id
 			}
+			runtime.GC()
 		}
 
 		fmt.Printf("invoke %v\n", i)
