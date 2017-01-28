@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-29 01:03:23 hamada>
+//Time-stamp: <2017-01-29 01:49:02 hamada>
 package work
 
 import (
@@ -9,7 +9,7 @@ import (
 )
 
 const PARALLEL = true
-const INSERT_BUG = false //true
+const INSERT_BUG = true
 
 func Timer() {
 	t := 2000
@@ -32,7 +32,7 @@ func Timer() {
 			time.Sleep(d)
 			if INSERT_BUG {
 				// Be carefull ;-)
-				ch <- i // 'i' lives after this loop ends
+				ch <- i // 'i' lives on shared memory after this loop ends
 			} else {
 				ch <- id
 			}
@@ -52,8 +52,10 @@ func Timer() {
 	fmt.Printf("done for\n")
 
 	for i := 0; i < ni; i++ {
-		fmt.Printf("%v: %v\n", runtime.NumGoroutine(), <-c)
-		outStackProf()
+		fmt.Printf("%v: i=%v\n", runtime.NumGoroutine(), <-c)
+		if false {
+			outStackProf()
+		}
 	}
 
 	fmt.Println("")
