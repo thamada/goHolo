@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-29 00:26:36 hamada>
+//Time-stamp: <2017-01-29 00:37:09 hamada>
 package work
 
 import (
@@ -22,10 +22,11 @@ func Timer() {
 			{
 				// (pc uintptr, file string, line int, ok bool)
 				pc, file, line, ok := runtime.Caller(0)
-				fmt.Println(id, pc, file, line, ok)
+				v := runtime.GOMAXPROCS(4)
+				fmt.Println(id, pc, file, line, ok, v)
 			}
-			td := time.Duration(rand.Intn(t))
-			d := time.Millisecond * td // Time.Duration
+			// d Time.Duration
+			d := time.Millisecond * time.Duration(rand.Intn(t))
 			time.Sleep(d)
 			if INSERT_BUG {
 				// Be carefull ;-)
@@ -35,6 +36,8 @@ func Timer() {
 			}
 		}
 
+		fmt.Printf("invoke %v\n", i)
+
 		if PARALLEL {
 			go calc(i, t, c)
 		} else {
@@ -42,8 +45,6 @@ func Timer() {
 		}
 
 		time.Sleep(10 * time.Millisecond)
-
-		fmt.Printf("done %v\n", i)
 	}
 	fmt.Printf("done for\n")
 
