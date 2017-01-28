@@ -4,7 +4,7 @@ package tut
 import "fmt"
 
 const (
-	Big = 1 << 100
+	Big   = 1 << 100
 	Small = Big >> 99
 )
 

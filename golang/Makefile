@@ -1,4 +1,4 @@
-#Time-stamp: <2017-01-26 05:30:46 hamada>
+#Time-stamp: <2017-01-29 03:05:42 hamada>
 
 target = ./bin/golang
 
@@ -10,7 +10,7 @@ export GOBIN
 default: build
 
 run:
-	${target}
+	@${target}
 
 build: vet
 	go get

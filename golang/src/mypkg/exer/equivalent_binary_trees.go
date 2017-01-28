@@ -70,7 +70,7 @@ func Equivalent_binary_trees() {
 
 	if true {
 		for i := 0; i < 2; i++ {
-			t := tree.New(i+1)
+			t := tree.New(i + 1)
 			logger_test(fmt.Sprintf("%v, %T\n", t, t))
 			c := make(chan int)
 			go Walk(t, c)

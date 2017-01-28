@@ -26,7 +26,7 @@ func Channels() {
 
 	c := make(chan int)
 	for i := 0; i < 100; i++ {
-		n := ni/2
+		n := ni / 2
 		go sum(s[:n], c)
 		go sum(s[n:], c)
 		x, y := <-c, <-c // sync threads

@@ -21,9 +21,9 @@ func (recv *Image) Bounds() image.Rectangle {
 }
 
 func (recv *Image) At(x, y int) color.Color {
-	r := ((x+y)/2) % 256
-	g := (x*y) % 256
-	b := ((x+y)/2) % 256
+	r := ((x + y) / 2) % 256
+	g := (x * y) % 256
+	b := ((x + y) / 2) % 256
 	a := 255
 	return color.RGBA{uint8(r), uint8(g), uint8(b), uint8(a)}
 }

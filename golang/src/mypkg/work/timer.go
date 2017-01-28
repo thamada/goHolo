@@ -21,7 +21,7 @@ func Timer() {
 		calc := func(id int, t int, ch chan int) {
 			fmt.Printf("start calc id=%v, i=%v\n", id, i)
 			time.Sleep(20 * time.Millisecond)
-			fmt.Printf("debug calc id=%v, i=%v\n", id, i) 
+			fmt.Printf("debug calc id=%v, i=%v\n", id, i)
 			{
 				// (pc uintptr, file string, line int, ok bool)
 				pc, file, line, ok := runtime.Caller(0)

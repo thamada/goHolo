@@ -14,7 +14,7 @@ func Race_conditions() {
 		// calc() is a closure which has 'i' on the shared memory.
 		calc := func(id int) {
 			ii := i // i is on shared memory
-			time.Sleep(100*time.Nanosecond)
+			time.Sleep(100 * time.Nanosecond)
 			var s = fmt.Sprintf("%v%v", id, i)
 			if ii != i {
 				fmt.Printf("id=%v, i=%v\n", id, i)

@@ -26,10 +26,10 @@ func Crawl(url string, depth int, fetcher Fetcher) {
 	fetch := func(url string, depth int) {
 		body, urls, err := fetcher.Fetch(url)
 		results <- &result{
-			url: url,
-			body: body,
-			urls: urls,
-			err: err,
+			url:   url,
+			body:  body,
+			urls:  urls,
+			err:   err,
 			depth: depth}
 		defer fmt.Printf("## fetch end: %v\n", url)
 	}
