@@ -1,10 +1,11 @@
-//Time-stamp: <2017-01-29 00:07:36 hamada>
+//Time-stamp: <2017-01-29 00:26:36 hamada>
 package work
 
 import (
 	"fmt"
 	"math/rand"
 	"time"
+	"runtime"
 )
 
 const PARALLEL = true
@@ -18,6 +19,11 @@ func Timer() {
 	for i := 0; i < ni; i++ {
 
 		calc := func(id int, t int, ch chan int) {
+			{
+				// (pc uintptr, file string, line int, ok bool)
+				pc, file, line, ok := runtime.Caller(0)
+				fmt.Println(id, pc, file, line, ok)
+			}
 			td := time.Duration(rand.Intn(t))
 			d := time.Millisecond * td // Time.Duration
 			time.Sleep(d)
