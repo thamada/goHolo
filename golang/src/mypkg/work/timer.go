@@ -1,11 +1,11 @@
-//Time-stamp: <2017-01-29 00:44:34 hamada>
+//Time-stamp: <2017-01-29 00:50:58 hamada>
 package work
 
 import (
 	"fmt"
 	"math/rand"
-	"time"
 	"runtime"
+	"time"
 )
 
 const PARALLEL = true
@@ -23,7 +23,9 @@ func Timer() {
 				// (pc uintptr, file string, line int, ok bool)
 				pc, file, line, ok := runtime.Caller(0)
 				v := runtime.GOROOT()
-				fmt.Println(id, pc, file, line, ok, v)
+				if false {
+					fmt.Println(id, pc, file, line, ok, v)
+				}
 			}
 			// d Time.Duration
 			d := time.Millisecond * time.Duration(rand.Intn(t))
@@ -50,7 +52,7 @@ func Timer() {
 	fmt.Printf("done for\n")
 
 	for i := 0; i < ni; i++ {
-		fmt.Printf("%v, ", <-c)
+		fmt.Println(runtime.NumGoroutine(), <-c)
 	}
 
 	fmt.Println("")
