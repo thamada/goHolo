@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-28 03:59:56 hamada>
+//Time-stamp: <2017-01-29 01:57:15 hamada>
 package main
 
 import (
@@ -11,9 +11,10 @@ import (
 
 func main() {
 
-	work.Timer()
+	work.Race_conditions()
 
 	if false {
+		work.Timer()
 		tut.Numeric_constants()
 		exer.Web()
 		tut.Mutex_counter()

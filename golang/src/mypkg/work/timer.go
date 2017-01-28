@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-29 01:49:02 hamada>
+//Time-stamp: <2017-01-29 01:56:01 hamada>
 package work
 
 import (
@@ -13,12 +13,15 @@ const INSERT_BUG = true
 
 func Timer() {
 	t := 2000
-	ni := 100
+	ni := 10
 	c := make(chan int, ni)
 
 	for i := 0; i < ni; i++ {
 
 		calc := func(id int, t int, ch chan int) {
+			fmt.Printf("start calc id=%v, i=%v\n", id, i)
+			time.Sleep(20 * time.Millisecond)
+			fmt.Printf("debug calc id=%v, i=%v\n", id, i) 
 			{
 				// (pc uintptr, file string, line int, ok bool)
 				pc, file, line, ok := runtime.Caller(0)
@@ -38,8 +41,6 @@ func Timer() {
 			}
 			runtime.GC()
 		}
-
-		fmt.Printf("invoke %v\n", i)
 
 		if PARALLEL {
 			go calc(i, t, c)
