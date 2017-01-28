@@ -1,4 +1,4 @@
-#Time-stamp: <2017-01-29 03:05:42 hamada>
+#Time-stamp: <2017-01-29 03:06:37 hamada>
 
 target = ./bin/golang
 
@@ -12,7 +12,7 @@ default: build
 run:
 	@${target}
 
-build: vet
+build: vet fmt
 	go get
 	go build -o ${target} main.go 
 	${target}
