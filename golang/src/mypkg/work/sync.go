@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-30 00:38:12 hamada>
+//Time-stamp: <2017-01-30 00:45:06 hamada>
 package work
 
 import (
@@ -25,11 +25,11 @@ func Sync() {
 
 		// In this case,
 		// 'i' on shared memory needs to be locked.
+		// so without lock, the race condition happens for 'i'.
 		/*
 			go func() {
 				time.Sleep(1500 * time.Millisecond)
 				log.Printf("%03d\n", i)
-				//			log.Println("finish", id)
 				wg.Done()
 			}()
 		*/
@@ -39,7 +39,7 @@ func Sync() {
 		// so it doesn't need to be locked.
 		go func(i int) {
 			defer wg.Done() // I recommmend to use defer for Done() ;-)
-			time.Sleep(500 * time.Millisecond)
+			time.Sleep(1500 * time.Millisecond)
 			log.Printf("%02d\n", i)
 		}(i)
 
