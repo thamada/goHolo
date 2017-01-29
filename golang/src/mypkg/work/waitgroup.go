@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-30 00:48:25 hamada>
+//Time-stamp: <2017-01-30 00:54:21 hamada>
 package work
 
 import (
@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func Sync() {
+func Waitgroup() {
 
 	/* A WaitGroup waits for a collection of goroutines to finish. The
 	main goroutine calls Add to set the number of goroutines to wait
@@ -26,18 +26,19 @@ func Sync() {
 		// In this case,
 		// 'i' on shared memory needs to be locked.
 		// so without lock, the race condition happens for 'i'.
-		/*
+		if false {
 			go func() {
 				time.Sleep(1500 * time.Millisecond)
 				log.Printf("%03d\n", i)
 				wg.Done()
 			}()
-		*/
+		}
 
 		// In this case,
 		// 'i' will be copied from shared to local memory,
 		// so it doesn't need to be locked.
 		go func(i int) {
+			// Done decrements the WaitGroup counter.
 			defer wg.Done() // I recommmend to use defer for Done() ;-)
 			time.Sleep(1500 * time.Millisecond)
 			log.Printf("%02d\n", i)
@@ -48,6 +49,9 @@ func Sync() {
 	if false {
 		wg.Add(1) // deadlock happens
 	}
+
+	// WaitGroup don't have a method to know the WaitGroup counter.
+	// log.Printf(*wg) // Error: invalid indirect
 
 	// Wait() waits until WaitGroup value will become 0.
 	wg.Wait()

@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-29 02:54:19 hamada>
+//Time-stamp: <2017-01-30 00:53:37 hamada>
 package main
 
 import (
@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	work.Sync()
+	work.Waitgroup()
 
 	if false {
 		work.String2buf()
