@@ -1,12 +1,13 @@
-//Time-stamp: <2017-01-30 03:10:47 hamada>
+//Time-stamp: <2017-01-30 03:11:19 hamada>
 package work
 
 /*
 #include <stdio.h>
 #include <stdlib.h>
 */
+import "C"
+
 import (
-	"C"
 	"unsafe"
 )
 
