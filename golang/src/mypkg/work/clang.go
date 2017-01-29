@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-30 03:11:19 hamada>
+//Time-stamp: <2017-01-30 03:12:46 hamada>
 package work
 
 /*
@@ -8,11 +8,13 @@ package work
 import "C"
 
 import (
+	"fmt"
 	"unsafe"
 )
 
 func Clang() {
 	p := C.CString("Hello from C language!")
+	fmt.Printf("%v, %T\n", p, p)
 	C.puts(p)
 	C.free(unsafe.Pointer(p))
 }
