@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-30 00:26:52 hamada>
+//Time-stamp: <2017-01-30 00:27:12 hamada>
 package work
 
 import (
@@ -28,9 +28,9 @@ func Sync() {
 		// 'i' will be copied from shared to local memory,
 		// so it doesn't need to be locked.
 		go func(i int) {
+			defer wg.Done() // I recommmend to use defer for Done() ;-)
 			time.Sleep(1500 * time.Millisecond)
 			log.Printf("%02d\n", i)
-			wg.Done()
 		}(i)
 
 	}
