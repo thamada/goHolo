@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-30 00:45:06 hamada>
+//Time-stamp: <2017-01-30 00:48:25 hamada>
 package work
 
 import (
@@ -44,6 +44,11 @@ func Sync() {
 		}(i)
 
 	}
+
+	if false {
+		wg.Add(1) // deadlock happens
+	}
+
 	// Wait() waits until WaitGroup value will become 0.
 	wg.Wait()
 }
