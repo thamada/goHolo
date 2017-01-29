@@ -1,12 +1,5 @@
-//Time-stamp: <2017-01-30 03:01:19 hamada>
+//Time-stamp: <2017-01-30 03:03:03 hamada>
 package main
-
-/*
-#include <stdio.h>
-#include <stdlib.h>
-*/
-import "C"
-import "unsafe"
 
 import (
 	"fmt"
@@ -18,9 +11,7 @@ import (
 
 func main() {
 
-	p := C.CString("Hello C!")
-	C.puts(p)
-	C.free(unsafe.Pointer(p))
+	work.Clang()
 
 	if false {
 		work.Waitgroup()
