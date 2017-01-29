@@ -13,3 +13,11 @@ build:
 
 swig:
 	swig -go -intgosize ${BIT} ${TARGET_BASE}.i
+
+
+clean:
+	rm -rf ${TARGET_BASE}.o ${TARGET_BASE}_{wrap,gc}.{c,o} ${TARGET_BASE}.go
+
+c: clean
+
+
