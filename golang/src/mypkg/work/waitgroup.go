@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-30 00:54:21 hamada>
+//Time-stamp: <2017-01-30 01:04:23 hamada>
 package work
 
 import (
@@ -15,7 +15,7 @@ func Waitgroup() {
 	finished. At the same time, Wait can be used to block until all
 	goroutines have finished.  */
 	var wg sync.WaitGroup
-	for i := 0; i < 100; i++ {
+	for i, ni := 0, 100; i < ni; i++ {
 
 		// You must call Add here at the main goroutine
 		// to set the number of
@@ -40,8 +40,9 @@ func Waitgroup() {
 		go func(i int) {
 			// Done decrements the WaitGroup counter.
 			defer wg.Done() // I recommmend to use defer for Done() ;-)
-			time.Sleep(1500 * time.Millisecond)
-			log.Printf("%02d\n", i)
+			sleep := time.Duration((ni-i)*10) * time.Millisecond
+			time.Sleep(sleep)
+			log.Printf("%02d: %v\n", i, sleep)
 		}(i)
 
 	}
