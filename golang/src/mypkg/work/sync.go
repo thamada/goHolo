@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-30 00:27:12 hamada>
+//Time-stamp: <2017-01-30 00:38:12 hamada>
 package work
 
 import (
@@ -8,9 +8,19 @@ import (
 )
 
 func Sync() {
+
+	/* A WaitGroup waits for a collection of goroutines to finish. The
+	main goroutine calls Add to set the number of goroutines to wait
+	for. Then each of the goroutines runs and calls Done when
+	finished. At the same time, Wait can be used to block until all
+	goroutines have finished.  */
 	var wg sync.WaitGroup
 	for i := 0; i < 100; i++ {
 
+		// You must call Add here at the main goroutine
+		// to set the number of
+		// goroutines to wait for.
+		// Don't increment WaitGroup inside a collection of goroutines
 		wg.Add(1)
 
 		// In this case,
@@ -29,7 +39,7 @@ func Sync() {
 		// so it doesn't need to be locked.
 		go func(i int) {
 			defer wg.Done() // I recommmend to use defer for Done() ;-)
-			time.Sleep(1500 * time.Millisecond)
+			time.Sleep(500 * time.Millisecond)
 			log.Printf("%02d\n", i)
 		}(i)
 
