@@ -1,12 +1,14 @@
-//Time-stamp: <2017-01-30 03:03:15 hamada>
+//Time-stamp: <2017-01-30 03:10:47 hamada>
 package work
 
 /*
 #include <stdio.h>
 #include <stdlib.h>
 */
-import "C"
-import "unsafe"
+import (
+	"C"
+	"unsafe"
+)
 
 func Clang() {
 	p := C.CString("Hello from C language!")
