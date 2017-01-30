@@ -1,9 +1,10 @@
-//Time-stamp: <2017-01-31 00:59:51 hamada>
+// Created by cgo - DO NOT EDIT
+
+//line /Users/hamada/git/goHolo/golang/main.go:2
 package main
+//line /Users/hamada/git/goHolo/golang/main.go:8
 
-import "C"
-//export work.Waitgroup()
-
+//line /Users/hamada/git/goHolo/golang/main.go:7
 import (
 	"fmt"
 	"mypkg/etc"
@@ -11,11 +12,17 @@ import (
 	"mypkg/tut"
 	"mypkg/work"
 )
+//line /Users/hamada/git/goHolo/golang/main.go:16
 
+//line /Users/hamada/git/goHolo/golang/main.go:15
 func main() {
+//line /Users/hamada/git/goHolo/golang/main.go:18
 
+//line /Users/hamada/git/goHolo/golang/main.go:17
 	work.Waitgroup()
+//line /Users/hamada/git/goHolo/golang/main.go:20
 
+//line /Users/hamada/git/goHolo/golang/main.go:19
 	if false {
 		work.Clang()
 		work.String2buf()
@@ -45,5 +52,7 @@ func main() {
 		etc.Main()
 		fmt.Printf("%v, %T\n", etc.Main, etc.Main)
 	}
+//line /Users/hamada/git/goHolo/golang/main.go:50
 
+//line /Users/hamada/git/goHolo/golang/main.go:49
 }

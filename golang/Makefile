@@ -1,4 +1,4 @@
-#Time-stamp: <2017-01-30 03:24:16 hamada>
+#Time-stamp: <2017-01-31 00:19:08 hamada>
 
 target = ./bin/golang
 
@@ -39,6 +39,8 @@ docweb:
 doc:
 	go doc sync WaitGroup
 
+lib:
+	go build -buildmode=c-archive -o libgo.a main.go
 
 clean:
 	rm -rf *~ .*~ golang ${target} src/*~ .DS_Store
