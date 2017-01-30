@@ -1,4 +1,4 @@
-#Time-stamp: <2017-01-31 00:19:08 hamada>
+#Time-stamp: <2017-01-31 01:30:33 hamada>
 
 target = ./bin/golang
 
@@ -38,6 +38,11 @@ docweb:
 
 doc:
 	go doc sync WaitGroup
+
+version:
+	@go version
+
+v: version
 
 lib:
 	go build -buildmode=c-archive -o libgo.a main.go

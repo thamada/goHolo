@@ -1,8 +1,5 @@
-//Time-stamp: <2017-01-31 00:59:51 hamada>
+//Time-stamp: <2017-01-31 01:21:46 hamada>
 package main
-
-import "C"
-//export work.Waitgroup()
 
 import (
 	"fmt"
@@ -14,10 +11,10 @@ import (
 
 func main() {
 
-	work.Waitgroup()
+	work.Clang()
 
 	if false {
-		work.Clang()
+		work.Waitgroup()
 		work.String2buf()
 		work.Race_conditions()
 		work.Timer()
