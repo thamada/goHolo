@@ -1,8 +1,5 @@
-//Time-stamp: <2017-01-31 01:03:41 hamada>
+//Time-stamp: <2017-01-31 01:05:42 hamada>
 package toC
-
-import "C"
-//export Waitgroup
 
 import (
 	log "fmt"
@@ -10,6 +7,8 @@ import (
 	"time"
 )
 
+import "C"
+//export Waitgroup
 func Waitgroup() {
 
 	/* A WaitGroup waits for a collection of goroutines to finish. The

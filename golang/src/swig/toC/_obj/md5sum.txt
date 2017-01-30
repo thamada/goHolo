@@ -1,0 +1,7 @@
+8d23f287d77ff8aba93fcc2def1d6da9  _cgo_export.c
+3984589f14ce21a5e894f878dca0a2b9  _cgo_export.h
+980b9ae4ddca312a8f00ba941d285946  _cgo_flags
+dc70723803e994aaad742f2e56302e71  _cgo_gotypes.go
+3431a5e0be38e123b9f76c0fe3f6aa7a  _cgo_main.c
+0cc16d1e1f1fec67a41fb85514928a68  waitgroup.cgo1.go
+41307e7482d5c806a9ce4f6d51dd19be  waitgroup.cgo2.c

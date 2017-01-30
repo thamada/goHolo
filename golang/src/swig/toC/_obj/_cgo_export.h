@@ -6,6 +6,7 @@
 
 
 
+
 /* End of preamble from import "C" comments.  */
 
 
@@ -50,6 +51,8 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
+
+extern void Waitgroup();
 
 #ifdef __cplusplus
 }
