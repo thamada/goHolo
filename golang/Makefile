@@ -1,4 +1,4 @@
-#Time-stamp: <2017-01-31 01:49:15 hamada>
+#Time-stamp: <2017-01-31 01:55:52 hamada>
 
 target = ./bin/golang
 
