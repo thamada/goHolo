@@ -1,4 +1,4 @@
-#Time-stamp: <2017-01-31 01:30:33 hamada>
+#Time-stamp: <2017-01-31 01:49:15 hamada>
 
 target = ./bin/golang
 
@@ -9,13 +9,14 @@ export GOBIN
 
 default: build
 
+build: vet fmt
+	go get
+	go build -x -o ${target} main.go 
+
 run:
 	@${target}
 
-build: vet fmt
-	go get
-	go build -o ${target} main.go 
-	${target}
+r: run
 
 vet:
 	go vet ./src/...
@@ -53,5 +54,5 @@ clean:
 
 c: clean
 
-r: run
+
 

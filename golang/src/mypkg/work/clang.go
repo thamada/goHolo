@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-31 01:36:01 hamada>
+//Time-stamp: <2017-01-31 01:47:02 hamada>
 package work
 
 /*
@@ -28,3 +28,6 @@ func Clang() {
 	fmt.Printf("%v, %T\n", x, x)
 	fmt.Printf("%v, %T\n", z, z)
 }
+
+// http://qiita.com/yugui/items/e71d3d0b3d654a110188
+// https://beatsync.net/main/log20141022.html
