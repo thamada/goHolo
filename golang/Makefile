@@ -1,4 +1,4 @@
-#Time-stamp: <2017-01-29 03:06:37 hamada>
+#Time-stamp: <2017-01-30 03:24:16 hamada>
 
 target = ./bin/golang
 
@@ -33,8 +33,12 @@ gorun:
 lint:
 	golint ./src
 
-doc:
+docweb:
 	godoc -http=:8080 -index
+
+doc:
+	go doc sync WaitGroup
+
 
 clean:
 	rm -rf *~ .*~ golang ${target} src/*~ .DS_Store
