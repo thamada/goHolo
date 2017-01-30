@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-31 01:34:14 hamada>
+//Time-stamp: <2017-01-31 01:36:01 hamada>
 package work
 
 /*
@@ -20,13 +20,11 @@ func Clang() {
 	C.puts(p)
 	C.free(unsafe.Pointer(p))
 
-	n := float64(8.0)
+	n := float64(16.0)
 	x := C.double(n)
 	z := C.sqrt(x)
-	C.puts(n)
-	C.puts(x)
-	C.puts(z)
-	C.free(unsafe.Pointer(n))
-	C.free(unsafe.Pointer(x))
-	C.free(unsafe.Pointer(z))
+	fmt.Println(n, x, z)
+	fmt.Printf("%v, %T\n", n, n)
+	fmt.Printf("%v, %T\n", x, x)
+	fmt.Printf("%v, %T\n", z, z)
 }
