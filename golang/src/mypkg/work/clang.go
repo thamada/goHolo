@@ -1,4 +1,4 @@
-//Time-stamp: <2017-01-31 01:47:02 hamada>
+//Time-stamp: <2017-01-31 02:22:46 hamada>
 package work
 
 /*
